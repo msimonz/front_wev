@@ -1,0 +1,44 @@
+<div class="container mt-4">
+    <!-- Botón para añadir una nueva mascota -->
+    <a class="btn btn-primary mb-3" [routerLink]="['/mascota/crearMascota']">
+      Añadir Mascota
+    </a>
+  
+    <!-- Tabla de mascotas -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Tipo</th>
+          <th>Raza</th>
+          <th>Sexo</th>
+          <th>Estado</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mascota of mascotas; let i = index">
+          <td>
+            <a class="btn btn-link" [routerLink]="['/mascota/detallesMascota', mascota.id]">{{ mascota.nombre }}></a>
+          </td>
+          <td>{{ mascota.edad }}</td>
+          <td>{{ mascota.especie }}</td>
+          <td>{{ mascota.raza }}</td>
+          <td>{{ mascota.sexo }}</td>
+          <td>{{ mascota.estado }}</td>
+          <td>{{ mascota.imagen }}</td>
+          <td>
+            <a class="btn btn-warning btn-sm" [routerLink]="['/mascota/actualizarMascota', mascota.id]">
+              Actualizar
+            </a>
+            <button class="btn btn-danger btn-sm" (click)="eliminarMascota(mascota)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

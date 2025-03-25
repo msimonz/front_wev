@@ -1,0 +1,22 @@
+<div class="container mt-4">
+    <h4>Detalles de la Mascota</h4>
+  
+    <!-- Si la mascota existe, muestra sus datos -->
+    <ng-container *ngIf="mascota">
+      <ul>
+        <li>Nombre: {{ mascota.nombre }}</li>
+        <li>Edad: {{ mascota.edad }} años</li>
+        <li>Tipo: {{ mascota.especie }}</li>
+        <li>Raza: {{ mascota.raza }}</li>
+        <li>Sexo: {{ mascota.sexo }}</li>
+        <li>Estado: {{ mascota.estado }}</li>
+        <li *ngIf="mascota.imagen">Imagen: <img [src]="mascota.imagen" alt="{{ mascota.nombre }}" class="img-fluid" /></li>
+      </ul>
+    </ng-container>
+  
+    <!-- Si la mascota NO existe, muestra un mensaje -->
+    <ng-container *ngIf="!mascota">
+      <p>Seleccione una mascota de la tabla</p>
+    </ng-container>
+  </div>
+  
