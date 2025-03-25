@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Mascota } from '../mascota';
+import { Mascota } from '../../model/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
 
 @Component({
