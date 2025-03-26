@@ -1,0 +1,183 @@
+/* Estilos generales */
+html {
+    scroll-behavior: smooth;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
+    font-family: 'Poppins', sans-serif;
+    color: #122732;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Estilos de la tabla */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none !important;
+    border-radius: 15px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+    margin-left: 300px;
+}
+
+.table img {
+    width: 100px;  /* Ajusta el ancho según lo que necesites */
+    height: 100px; /* Mantén la altura uniforme */
+    object-fit: cover; /* Recorta la imagen si es necesario para mantener la proporción */
+    border-radius: 10px; /* Opcional: para dar bordes redondeados */
+}
+
+table th, table td {
+    border: none; /* Elimina los bordes de cada celda */
+    padding: 12px; /* Espaciado interno */
+    text-align: center;
+}
+
+.table thead {
+    background-color: #C9DCE8;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+/* Estilo para el título de la tabla */
+h2 {
+    color: #122732;
+    background: #C9DCE8;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 900 !important;
+    border-radius: 15px;
+    margin-top: -30px !important;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #122732 !important;
+    text-decoration: none !important;
+}
+
+/* Estilo para los botones */
+.btn-primary, .btn-danger, .btn-warning {
+    color: white !important;
+}
+
+.btn-primary {
+    background-color: #C9DCE8;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+    width: 1200px;
+    margin-left: 300px;
+    color: #122732 !important;
+}
+
+.btn-primary:hover {
+    background-color: #122732;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.btn-warning {
+    background-color: #3108fb;
+    color: #122732;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #122732;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.btn-danger {
+    background-color: #D9534F;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #C9302C;
+    transform: translateY(-3px);
+}
+
+/* Animación del desplazamiento de las mascotas */
+.marquesina-petsupplies {
+    background-color: #C9DCE8;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #122732;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: -20px;
+}
+
+.marquesina-contenedor {
+    display: flex;
+    gap: 32px;
+    animation: scrollText 20s linear infinite;
+    width: 100%;
+    white-space: nowrap;
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Estilos para el botón de agregar */
+.btn-agregar {
+    background-color: #C9DCE8;
+    color: #122732;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-agregar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
