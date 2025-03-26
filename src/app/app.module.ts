@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
+import { ServiciosComponent } from './servicios/servicios.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SobreNosotrosComponent
+    SobreNosotrosComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,
