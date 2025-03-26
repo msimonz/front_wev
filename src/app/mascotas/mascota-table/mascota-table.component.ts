@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Mascota } from '../../model/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
 
@@ -7,10 +7,11 @@ import { MascotaService } from 'src/app/service/mascota.service';
   templateUrl: './mascota-table.component.html',
   styleUrls: ['./mascota-table.component.css']
 })
-export class MascotaTableComponent {
+export class MascotaTableComponent implements OnInit {
   mascotaSeleccionada!: Mascota;
   mascotaParaActualizar!: Mascota;
   mascotas!: Mascota[];
+  @Output() mascotaEliminada = new EventEmitter<Mascota>();
 
   constructor(
     private mascotaService: MascotaService
@@ -19,26 +20,33 @@ export class MascotaTableComponent {
   }
 
   ngOnInit() {
+    this.cargarMascotas();
+  }
+
+  cargarMascotas() {
     this.mascotas = this.mascotaService.findAll();
   }
 
   //metodos
   eliminarMascota(mascota: Mascota) {
-    var index = this.mascotas.indexOf(mascota);
-    this.mascotas.splice(index, 1);
+    if (confirm(`¿Está seguro de eliminar a ${mascota.nombre}?`)) {
+      this.mascotaService.deleteMascota(mascota.id);
+      this.mascotaEliminada.emit(mascota);
+      this.cargarMascotas();
+    }
   }
   agregarMascota(mascota: Mascota) {
     // Agregar la nueva mascota al servicio
     this.mascotaService.addMascota(mascota);
     // Actualizar la lista de mascotas
-    this.mascotas = this.mascotaService.findAll();
+    this.cargarMascotas();
   }
 
   actualizarMascota(mascota: Mascota) {
     // Actualizar la mascota en el servicio
     this.mascotaService.updateMascota(mascota);
     // Volver a cargar las mascotas actualizadas
-    this.mascotas = this.mascotaService.findAll();
+    this.cargarMascotas();
   }
 }
 
