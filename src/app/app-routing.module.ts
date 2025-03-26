@@ -5,6 +5,9 @@ import { MascotaDetallesComponent } from './mascotas/mascota-detalles/mascota-de
 import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update.component';
 import { MascotaFormComponent } from './mascotas/mascota-form/mascota-form.component';
 import { HomeComponent } from './home/home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 const routes: Routes = [
   {path: 'mascota/tablaMascotas', component: MascotaTableComponent},

@@ -9,7 +9,9 @@ import { MascotaFormComponent } from './mascotas/mascota-form/mascota-form.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update.component';
 import { HomeComponent } from './home/home/home.component';
-import { HeaderComponent } from './home/home/header/header.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { HeaderComponent } from './home/home/header/header.component';
     MascotaFormComponent,
     MascotaUpdateComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    SobreNosotrosComponent
   ],
   imports: [
     BrowserModule,
