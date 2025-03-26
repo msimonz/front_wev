@@ -128,8 +128,8 @@ export class MascotaService {
 
     updateMascota(mascotaActualizada: Mascota): boolean{
       const index = this.mascotas.findIndex(m => m.id === mascotaActualizada.id);
-      if(index !== -1){
-        this.mascotas[index] = mascotaActualizada;
+      if(index >= 0){
+        this.mascotas.splice(index, 1);
         return true;
       }
       return false;

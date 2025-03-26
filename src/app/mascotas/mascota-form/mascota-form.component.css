@@ -1,0 +1,126 @@
+/* Estilos generales */
+html {
+    scroll-behavior: smooth;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
+    font-family: 'Poppins', sans-serif;
+    color: #122732;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 100px;
+}
+
+/* Contenedor del formulario */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+/* Título principal */
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #FBBC08;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilo de los grupos de formularios */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200%;
+    margin-bottom: 20px;
+    margin: 0 auto;
+    margin-left: -80px;
+}
+
+/* Estilo de las etiquetas */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #122732;
+    margin-bottom: 5px;
+}
+
+/* Estilo de los campos de entrada */
+.input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 2px solid #95A7B3;
+    font-size: 16px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    resize: none;
+}
+
+/* Botón de enviar */
+button {
+    width: 100%;
+    max-width: 600px;
+    background: #FBBC08;
+    color: #122732;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #122732;
+    color: #F8FAFC;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilo para los selectores de opción */
+select {
+    padding: 12px;
+}
+
+/* Estilo del pie de página */
+footer {
+    width: 100%;
+}

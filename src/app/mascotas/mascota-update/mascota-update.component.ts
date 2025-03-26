@@ -62,6 +62,7 @@ export class MascotaUpdateComponent implements OnInit {
         ...this.mascotaForm.value
       };
 
+<<<<<<< HEAD
       const resultado = this.mascotaService.updateMascota(mascotaActualizada);
       
       if (resultado) {
@@ -69,6 +70,17 @@ export class MascotaUpdateComponent implements OnInit {
         this.router.navigate(['/mascota/tablaMascotas']);
       } else {
         alert('Error al actualizar la mascota');
+=======
+      try {
+        const actualizada = this.mascotaService.updateMascota(mascotaActualizada);
+        console.log('Respuesta del servicio:', actualizada); // Para debug
+        
+        if (actualizada) {
+          this.router.navigate(['/mascota/tablaMascotas']);
+        }
+      } catch (error) {
+        console.error('Error al actualizar:', error);
+>>>>>>> 01d1fa5d219e6c918ec7579afa1005753a7a08a0
       }
     } 
   }
