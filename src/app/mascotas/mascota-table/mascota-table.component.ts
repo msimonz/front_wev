@@ -1,11 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Mascota } from '../../model/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
+import { HeaderComponent } from "src/app/header/header.component";
+import { FooterComponent } from "src/app/footer/footer.component";
 
 @Component({
   selector: 'app-mascota-table',
   templateUrl: './mascota-table.component.html',
-  styleUrls: ['./mascota-table.component.css']
+  styleUrls: ['./mascota-table.component.css'],
 })
 export class MascotaTableComponent implements OnInit {
   mascotaSeleccionada!: Mascota;

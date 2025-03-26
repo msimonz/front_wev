@@ -2,6 +2,10 @@ html {
     scroll-behavior: smooth;
 }
 
+main {
+    background-color: #122732;
+}
+
 * { 
     margin: 0;
     padding: 0;
@@ -15,7 +19,7 @@ body {
 
 /*Seccion Bienvenida*/
 #bienvenida {
-    color: #F8FAFC;
+    color: #ffffff;
     min-height: 80;
     display: flex;
     padding: 64px 128px;

@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent {
+  modalVisible: boolean = false; // Controla la visibilidad de los modales
 
+  // Mostrar el modal
+  mostrarModal() {
+    this.modalVisible = true;
+  }
+
+  // Cerrar el modal
+  cerrarModal() {
+    this.modalVisible = false;
+  }
 }
