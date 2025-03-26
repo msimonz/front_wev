@@ -1,0 +1,327 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #122732;
+}
+
+/*Seccion Bienvenida*/
+#bienvenida {
+    color: #F8FAFC;
+    min-height: 80;
+    display: flex;
+    padding: 64px 128px;
+    position: relative;
+    max-width: 1900px;
+}
+
+.contenedor-bienvenida {
+    max-width: 1200px; /* Aumentar el ancho para evitar que el contenido se sobrepase */
+    margin: 0 auto; /* Centrar el contenedor */
+    display: flex;
+    align-items: center; /* Alinear verticalmente */
+    justify-content: space-between; /* Mantener el texto a la izquierda y la imagen a la derecha */
+    gap: 20px;
+}
+
+/* Estilos generales de la sección "Sobre Nosotros" */
+#bienvenida {
+    background-color: #122732; /* Color de fondo oscuro */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mantiene el texto a la izquierda y la imagen a la derecha */
+    padding: 60px 10%;
+}
+
+.contenedor-bienvenida {
+    max-width: 600px; /* Define un ancho máximo para el texto */
+}
+
+.titulo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #FFFFFF; /* Color del texto */
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+
+.parrafo {
+    font-size: 20px;
+    color: #C9DCE8; /* Color del texto */
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Contenedor de la imagen del perro */
+.contenedor-animales {
+    flex: 1; /* Permite que la imagen se acomode sin empujar el texto */
+    display: flex;
+    justify-content: flex-end; /* Empuja la imagen hacia la derecha */
+}
+.imagen-animales {
+    width: 500px;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 250px;
+    margin-right: 40px;
+}
+.imagen-animales img {
+    max-width: 450px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+}
+
+
+/* Sección Marquesina 1 */
+.marquesina-texto {
+    background-color: #FBBC08;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #F8FAFC;
+    font-weight: bold;
+    font-size: 20px; /* Aumenta el tamaño del texto */
+}
+
+.marquesina-contenedor {
+    display: flex;
+    gap: 32px;
+    animation: scrollText 20s linear infinite;
+    white-space: nowrap;
+}
+
+/* Sección Marquesina 2 */
+.marquesina2-texto {
+    background-color: #FBBC08;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #F8FAFC;
+    font-weight: bold;
+    font-size: 20px; /* Aumenta el tamaño del emoji para mayor visibilidad */
+}
+
+.marquesina2-contenedor {
+    display: flex;
+    gap: 16px;
+    animation: scrollText 20s linear infinite;
+    white-space: nowrap;
+}
+
+/* Animación de desplazamiento */
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Sección de Métricas */
+#metricas {
+    background-color: #122732;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10%;
+    color: #F8FAFC;
+    gap: 50px;
+}
+
+.contenedor-metricas .titulo {
+    font-size: 50px;
+    color: #F8FAFC;
+    margin-bottom: 20px;
+}
+
+.contenedor-metricas .subtitulo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #F8FAFC;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contenedor-metricas {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.imagen-metricas img {
+    width: 1200px;
+    height: auto;
+    max-width: 100%;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+/* Lista de compromisos y su imagen */
+.lista-compromisos-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.lista-compromisos {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+    color: #C9DCE8;
+    flex: 1;
+}
+
+.lista-compromisos li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.lista-compromisos li::before {
+    content: "✔️";
+    margin-right: 10px;
+    color: #F8FAFC;
+}
+
+.imagen-razas {
+    max-width: 200px; /* Hace que la imagen sea más pequeña */
+    height: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+
+/* Sección de Visión */
+#vision {
+    background-color: #122732;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 10%; /* Ajustar el espacio superior e inferior */
+    color: #F8FAFC;
+    gap: 80px; /* Aumenta el espacio horizontal entre el texto y la imagen */
+}
+
+.contenedor-vision {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 50px; /* Espacio entre el texto y la imagen */
+}
+
+.contenedor-vision .texto-vision {
+    flex: 1;
+}
+
+.contenedor-vision .titulo {
+    font-size: 50px;
+    color: #F8FAFC;
+    font-weight: bold;
+    margin-bottom: 20px; /* Espaciado entre el título y el párrafo */
+}
+
+.contenedor-vision .parrafo {
+    font-size: 20px;
+    color: #C9DCE8;
+    line-height: 1.6;
+    max-width: 600px; /* Controla el ancho del texto para evitar que se expanda demasiado */
+}
+
+.imagen-vision-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imagen-vision {
+    width: 500px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    margin-left: 80px;
+}
+
+
+/* Sección "¿Por qué elegirnos?" */
+#porque-elegirnos {
+    background-color: #122732;
+    text-align: center;
+    padding: 80px 10%;
+    color: #F8FAFC;
+    position: relative;
+}
+
+#porque-elegirnos .titulo {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Contenedor principal */
+.contenedor-porque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Contenedor de razones */
+.razones {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+}
+
+/* Estilos de cada burbuja de razón */
+.razon {
+    background-color: #C9DCE8;
+    color: #122732;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 20px;
+    max-width: 250px;
+    text-align: center;
+    position: relative;
+}
+
+/* Espaciado específico para cada burbuja */
+.superior { margin-bottom: 20px; }
+.inferior { margin-top: 20px; }
+
+.izquierda { align-self: flex-start; }
+.centro { align-self: center; }
+.derecha { align-self: flex-end; }
+
+/* Imagen del perro */
+.imagen-perro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.imagen-perro img {
+    max-width: 300px;
+    height: auto;
+}

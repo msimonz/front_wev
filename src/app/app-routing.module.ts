@@ -5,17 +5,22 @@ import { MascotaDetallesComponent } from './mascotas/mascota-detalles/mascota-de
 import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update.component';
 import { MascotaFormComponent } from './mascotas/mascota-form/mascota-form.component';
 import { HomeComponent } from './home/home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component'; // Asegúrate de que esto esté importado
+import { ServiciosComponent } from './servicios/servicios.component'; // Asegúrate de que esto esté importado
 
 
 const routes: Routes = [
-  {path: 'mascota/tablaMascotas', component: MascotaTableComponent},
-  {path: 'home', component: HomeComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'mascota/detallesMascota/:id', component: MascotaDetallesComponent},
-  {path:'mascota/actualizarMascota/:id', component: MascotaUpdateComponent},
-  {path:'mascota/crearMascota', component: MascotaFormComponent}
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent },
+  { path: 'sobre-nosotros', component: SobreNosotrosComponent },
+  { path: 'servicios', component: ServiciosComponent },
+  
+  
+  // Rutas de mascotas
+  { path: 'mascota/tablaMascotas', component: MascotaTableComponent },
+  { path: 'mascota/detallesMascota/:id', component: MascotaDetallesComponent },
+  { path: 'mascota/actualizarMascota/:id', component: MascotaUpdateComponent },
+  { path: 'mascota/crearMascota', component: MascotaFormComponent },
 ];
 
 @NgModule({
