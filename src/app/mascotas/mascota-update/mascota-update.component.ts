@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../model/mascota';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,47 +21,56 @@ export class MascotaUpdateComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    
-    const mascota = this.mascotaService.findById(this.id);
-    if (!mascota) {
-      console.error('Mascota no encontrada');
-      this.router.navigate(['/mascotas/tablaMascotas']);
-      return;
-    }
-    
+    // Inicializar el formulario con validadores
     this.mascotaForm = this.formBuilder.group({
-      id: [mascota.id],
-      nombre: [mascota.nombre],
-      edad: [mascota.edad],  
-      especie: [mascota.especie],
-      raza: [mascota.raza],
-      sexo: [mascota.sexo],
-      estado: [mascota.estado],
-      imagen: [mascota.imagen]
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      edad: ['', [Validators.required, Validators.min(0)]],
+      especie: ['', Validators.required],
+      raza: ['', Validators.required],
+      sexo: ['', Validators.required],
+      estado: ['', Validators.required],
+      imagen: ['', Validators.required]
     });
+
+    // Obtener el ID de la ruta y cargar los datos
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.cargarDatosMascota();
+  }
+
+  cargarDatosMascota(): void {
+    const mascota = this.mascotaService.findById(this.id);
+    if (mascota) {
+      this.mascotaForm.patchValue({
+        nombre: mascota.nombre,
+        edad: mascota.edad,
+        especie: mascota.especie,
+        raza: mascota.raza,
+        sexo: mascota.sexo,
+        estado: mascota.estado,
+        imagen: mascota.imagen
+      });
+    } else {
+      alert('Mascota no encontrada');
+      this.router.navigate(['/mascota/tablaMascotas']);
+    }
   }
 
   guardarCambios(): void {
     if (this.mascotaForm.valid) {
       const mascotaActualizada: Mascota = {
-        ...this.mascotaForm.value,
-        id: this.id
+        id: this.id,
+        ...this.mascotaForm.value
       };
 
-      try {
-        const actualizada = this.mascotaService.updateMascota(mascotaActualizada);
-        console.log('Respuesta del servicio:', actualizada); // Para debug
-        
-        if (actualizada) {
-          this.router.navigate(['/mascotas/tablaMascotas']);
-        }
-      } catch (error) {
-        console.error('Error al actualizar:', error);
+      const resultado = this.mascotaService.updateMascota(mascotaActualizada);
+      
+      if (resultado) {
+        alert('Mascota actualizada correctamente');
+        this.router.navigate(['/mascota/tablaMascotas']);
+      } else {
+        alert('Error al actualizar la mascota');
       }
-    } else {
-      console.log('Formulario inválido:', this.mascotaForm.errors);
-    }
+    } 
   }
 
   cancelar(): void {
