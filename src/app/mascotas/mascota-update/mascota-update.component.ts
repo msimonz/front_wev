@@ -54,7 +54,7 @@ export class MascotaUpdateComponent implements OnInit {
         console.log('Respuesta del servicio:', actualizada); // Para debug
         
         if (actualizada) {
-          this.router.navigate(['/mascotas/tablaMascotas']);
+          this.router.navigate(['/mascota/tablaMascotas']);
         }
       } catch (error) {
         console.error('Error al actualizar:', error);

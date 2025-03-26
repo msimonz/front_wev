@@ -5,37 +5,117 @@
     </div>
     <div class="card-body">
       <form [formGroup]="mascotaForm" (ngSubmit)="guardarCambios()">
-        <div class="form-group">
+        <!-- Nombre -->
+        <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" formControlName="nombre">
+          <input type="text" 
+                 class="form-control" 
+                 id="nombre" 
+                 formControlName="nombre"
+                 [class.is-invalid]="mascotaForm.get('nombre')?.invalid && mascotaForm.get('nombre')?.touched">
+          <div class="invalid-feedback" *ngIf="mascotaForm.get('nombre')?.errors?.['required']">
+            El nombre es requerido
+          </div>
+          <div class="invalid-feedback" *ngIf="mascotaForm.get('nombre')?.errors?.['minlength']">
+            El nombre debe tener al menos 2 caracteres
+          </div>
         </div>
-        <div class="form-group">
+
+        <!-- Edad -->
+        <div class="mb-3">
           <label for="edad" class="form-label">Edad</label>
-          <input type="number" class="form-control" id="edad" formControlName="edad">
+          <input type="number" 
+                 class="form-control" 
+                 id="edad" 
+                 formControlName="edad"
+                 [class.is-invalid]="mascotaForm.get('edad')?.invalid && mascotaForm.get('edad')?.touched">
+          <div class="invalid-feedback" *ngIf="mascotaForm.get('edad')?.errors?.['required']">
+            La edad es requerida
+          </div>
+          <div class="invalid-feedback" *ngIf="mascotaForm.get('edad')?.errors?.['min']">
+            La edad debe ser mayor a 0
+          </div>
         </div>
-        <div class="form-group">
+
+        <!-- Especie -->
+        <div class="mb-3">
           <label for="especie" class="form-label">Especie</label>
-          <input type="text" class="form-control" id="especie" formControlName="especie">
+          <select class="form-select" 
+                  id="especie" 
+                  formControlName="especie"
+                  [class.is-invalid]="mascotaForm.get('especie')?.invalid && mascotaForm.get('especie')?.touched">
+            <option value="">Seleccione una especie</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+          </select>
+          <div class="invalid-feedback">
+            La especie es requerida
+          </div>
         </div>
-        <div class="form-group">
+
+        <!-- Raza -->
+        <div class="mb-3">
           <label for="raza" class="form-label">Raza</label>
-          <input type="text" class="form-control" id="raza" formControlName="raza">
+          <input type="text" 
+                 class="form-control" 
+                 id="raza" 
+                 formControlName="raza"
+                 [class.is-invalid]="mascotaForm.get('raza')?.invalid && mascotaForm.get('raza')?.touched">
+          <div class="invalid-feedback">
+            La raza es requerida
+          </div>
         </div>
-        <div class="form-group">
+
+        <!-- Sexo -->
+        <div class="mb-3">
           <label for="sexo" class="form-label">Sexo</label>
-          <input type="text" class="form-control" id="sexo" formControlName="sexo">
+          <select class="form-select" 
+                  id="sexo" 
+                  formControlName="sexo"
+                  [class.is-invalid]="mascotaForm.get('sexo')?.invalid && mascotaForm.get('sexo')?.touched">
+            <option value="">Seleccione el sexo</option>
+            <option value="Macho">Macho</option>
+            <option value="Hembra">Hembra</option>
+          </select>
+          <div class="invalid-feedback">
+            El sexo es requerido
+          </div>
         </div>
-        <div class="form-group">
+
+        <!-- Estado -->
+        <div class="mb-3">
           <label for="estado" class="form-label">Estado</label>
-          <input type="text" class="form-control" id="estado" formControlName="estado">
+          <select class="form-select" 
+                  id="estado" 
+                  formControlName="estado"
+                  [class.is-invalid]="mascotaForm.get('estado')?.invalid && mascotaForm.get('estado')?.touched">
+            <option value="">Seleccione el estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+          <div class="invalid-feedback">
+            El estado es requerido
+          </div>
         </div>
-        <div class="form-group">
-          <label for="imagen" class="form-label">Imagen</label>
-          <input type="text" class="form-control" id="imagen" formControlName="imagen">
+
+        <!-- Imagen -->
+        <div class="mb-3">
+          <label for="imagen" class="form-label">URL de la Imagen</label>
+          <input type="text" 
+                 class="form-control" 
+                 id="imagen" 
+                 formControlName="imagen"
+                 [class.is-invalid]="mascotaForm.get('imagen')?.invalid && mascotaForm.get('imagen')?.touched">
+          <div class="invalid-feedback">
+            La URL de la imagen es requerida
+          </div>
         </div>
+
         <div class="d-flex justify-content-end gap-2">
           <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary" [disabled]="mascotaForm.invalid">
+            Guardar cambios
+          </button>
         </div>
       </form>
     </div>
