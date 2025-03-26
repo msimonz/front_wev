@@ -1,0 +1,111 @@
+/* Estilos generales */
+body {
+    background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
+    font-family: 'Poppins', sans-serif;
+    color: #122732;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Título principal */
+h4 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #FBBC08;  /* Color amarillo */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilo de la tarjeta de mascota */
+.card {
+    background: rgba(255, 255, 255, 0.85); /* Efecto vidrio */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    border: 3px solid #95A7B3; /* Borde con tono azul grisáceo */
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+/* Decoración superior de la tarjeta */
+.card::before {
+    content: '';
+    width: 80px;
+    height: 5px;
+    background: #FBBC08; /* Línea decorativa */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 10px 10px;
+}
+
+/* Imagen de la tarjeta */
+.card img {
+    width: 90%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 3px solid #95A7B3;
+}
+
+/* Estilo de los detalles de la mascota (lista) */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #F8FAFC; /* Fondo suave */
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del botón para volver a la lista */
+.btn {
+    background: #FBBC08;
+    color: #122732;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+.btn:hover {
+    background: #122732;
+    color: #F8FAFC;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilo para el mensaje si no hay mascota */
+p {
+    font-size: 16px;
+    color: #122732;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
