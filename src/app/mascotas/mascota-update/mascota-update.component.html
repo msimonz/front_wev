@@ -39,17 +39,17 @@
 
         <!-- Especie -->
         <div class="mb-3">
-          <label for="especie" class="form-label">Especie</label>
+          <label for="tipo" class="form-label">tipo</label>
           <select class="form-select" 
-                  id="especie" 
-                  formControlName="especie"
-                  [class.is-invalid]="mascotaForm.get('especie')?.invalid && mascotaForm.get('especie')?.touched">
-            <option value="">Seleccione una especie</option>
+                  id="tipo" 
+                  formControlName="tipo"
+                  [class.is-invalid]="mascotaForm.get('tipo')?.invalid && mascotaForm.get('tipo')?.touched">
+            <option value="">Seleccione una tipo</option>
             <option value="Perro">Perro</option>
             <option value="Gato">Gato</option>
           </select>
           <div class="invalid-feedback">
-            La especie es requerida
+            El tipo es requerido
           </div>
         </div>
 

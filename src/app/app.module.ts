@@ -13,6 +13,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SobreNosotrosComponent } from './home/sobre-nosotros/sobre-nosotros.component';
 import { ServiciosComponent } from './home/servicios/servicios.component';
+<<<<<<< HEAD
+=======
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> d44568b (Cambio paradigma para consumo de API REST entidad mascota)
 
 
 @NgModule({
@@ -32,7 +36,8 @@ import { ServiciosComponent } from './home/servicios/servicios.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
