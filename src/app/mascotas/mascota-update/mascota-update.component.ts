@@ -9,50 +9,51 @@ import { MascotaService } from '../../service/mascota.service';
   templateUrl: './mascota-update.component.html',
   styleUrls: ['./mascota-update.component.css']
 })
-export class MascotaUpdateComponent implements OnInit { 
+export class MascotaUpdateComponent implements OnInit {
   mascotaForm!: FormGroup;
   id!: number;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
     private mascotaService: MascotaService
   ) {}
-  
+
   ngOnInit(): void {
-    // Inicializar el formulario con validadores
     this.mascotaForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       edad: ['', [Validators.required, Validators.min(0)]],
-      especie: ['', Validators.required],
+      tipo: ['', Validators.required],
       raza: ['', Validators.required],
       sexo: ['', Validators.required],
       estado: ['', Validators.required],
       imagen: ['', Validators.required]
     });
 
-    // Obtener el ID de la ruta y cargar los datos
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.cargarDatosMascota();
   }
 
   cargarDatosMascota(): void {
-    const mascota = this.mascotaService.findById(this.id);
-    if (mascota) {
-      this.mascotaForm.patchValue({
-        nombre: mascota.nombre,
-        edad: mascota.edad,
-        especie: mascota.especie,
-        raza: mascota.raza,
-        sexo: mascota.sexo,
-        estado: mascota.estado,
-        imagen: mascota.imagen
-      });
-    } else {
-      alert('Mascota no encontrada');
-      this.router.navigate(['/mascota/tablaMascotas']);
-    }
+    this.mascotaService.findById(this.id).subscribe({
+      next: (mascota: Mascota) => {
+        this.mascotaForm.patchValue({
+          nombre: mascota.nombre,
+          edad: mascota.edad,
+          tipo: mascota.tipo,
+          raza: mascota.raza,
+          sexo: mascota.sexo,
+          estado: mascota.estado,
+          imagen: mascota.imagen
+        });
+      },
+      error: (err) => {
+        console.error('Error al cargar mascota:', err);
+        alert('Error: No se pudo cargar la mascota');
+        this.router.navigate(['/mascota/tablaMascotas']);
+      }
+    });
   }
 
   guardarCambios(): void {
@@ -61,17 +62,29 @@ export class MascotaUpdateComponent implements OnInit {
         id: this.id,
         ...this.mascotaForm.value
       };
-      try {
-        const actualizada = this.mascotaService.updateMascota(mascotaActualizada);
-        console.log('Respuesta del servicio:', actualizada); // Para debug
-        
-        if (actualizada) {
+
+      this.mascotaService.updateMascota(mascotaActualizada).subscribe({
+        next: () => {
+          alert('Mascota actualizada correctamente');
           this.router.navigate(['/mascota/tablaMascotas']);
+        },
+        error: (err) => {
+          console.error('Error al actualizar:', err);
+          alert('Error al actualizar la mascota');
         }
-      } catch (error) {
-        console.error('Error al actualizar:', error);
+      });
+    } else {
+      this.marcarCamposInvalidos();
+    }
+  }
+
+  marcarCamposInvalidos(): void {
+    Object.keys(this.mascotaForm.controls).forEach(key => {
+      const control = this.mascotaForm.get(key);
+      if (control?.invalid) {
+        control.markAsTouched();
       }
-    } 
+    });
   }
 
   cancelar(): void {
