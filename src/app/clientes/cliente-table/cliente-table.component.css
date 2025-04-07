@@ -1,0 +1,223 @@
+/* Estilos generales */
+html {
+    scroll-behavior: smooth;
+}
+
+main{
+    margin-top: 150px;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    flex: 1;
+}
+
+body {
+    background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
+    font-family: 'Poppins', sans-serif;
+    color: #122732;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Fijar el header en la parte superior */
+app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+    background-color: #C9DCE8;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de la tabla */
+.container {
+    margin-top: 80px; /* Ajusta el espacio para que no quede tapado por el header */
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none !important;
+    border-radius: 15px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.table img {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover; 
+    border-radius: 10px; 
+}
+
+table th, table td {
+    border: none;
+    padding: 12px;
+    text-align: center;
+}
+
+.table thead {
+    background-color: #C9DCE8;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+/* Estilo para el título de la tabla */
+h2 {
+    color: #122732;
+    background: #C9DCE8;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 900 !important;
+    border-radius: 15px;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #122732 !important;
+    text-decoration: none !important;
+}
+
+/* Estilo para los botones */
+.btn-primary, .btn-danger, .btn-warning {
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 0 auto !important;
+}
+
+.btn-primary {
+    background-color: #C9DCE8;
+    color: #122732;
+
+}
+
+.btn-primary:hover {
+    background-color: #122732;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.btn-warning {
+    background-color: #3108fb;
+    color: #122732;
+}
+
+.btn-warning:hover {
+    background-color: #122732;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.btn-danger {
+    background-color: #D9534F;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #C9302C;
+    transform: translateY(-3px);
+}
+
+/* Estilos para el badge de estado */
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.bg-success {
+    background-color: #28a745; /* Verde para Activo */
+}
+
+.bg-secondary {
+    background-color: #6c757d; /* Gris para Inactivo */
+}
+
+/* Animación del desplazamiento de las mascotas */
+.marquesina-petsupplies {
+    background-color: #C9DCE8;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    color: #122732;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: -20px;
+}
+
+.marquesina-contenedor {
+    display: flex;
+    gap: 32px;
+    animation: scrollText 20s linear infinite;
+    width: 100%;
+    white-space: nowrap;
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Estilos para el botón de agregar */
+.btn-agregar {
+    background-color: #C9DCE8;
+    color: #122732;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-agregar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}

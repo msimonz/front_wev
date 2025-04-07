@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<main>
+    <div class="container mt-4">
+        <!-- Botón para añadir una nueva mascota -->
+        <div class="titulo">
+            <h2>Clientes</h2>
+            <a class="btn btn-primary" [routerLink]="['/mascota/crearMascota']">
+                Añadir Cliente
+            </a>
+        </div>
+    
+        <!-- Tabla de mascotas -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>email</th>
+                    <th>telefono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes">
+                    <td>
+                        <a [routerLink]="['cliente/detallesClientes', cliente.id]">
+                            {{ cliente.nombre }}
+                        </a>
+                    </td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.telefono }}</td>   
+                    <td>
+                        <a class="btn btn-warning btn-sm me-2" 
+                           [routerLink]="['cliente/actualizarCliente', cliente.id]">
+                            Actualizar
+                        </a>
+                        <button class="btn btn-danger btn-sm" 
+                                (click)="eliminarCliente(cliente)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <div *ngIf="clientes?.length === 0" class="alert alert-info">
+            No hay clientes registrados
+        </div>
+    </div>
+    
+</main>
+
+<app-footer></app-footer>
+

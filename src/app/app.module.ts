@@ -13,10 +13,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SobreNosotrosComponent } from './home/sobre-nosotros/sobre-nosotros.component';
 import { ServiciosComponent } from './home/servicios/servicios.component';
-<<<<<<< HEAD
-=======
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> d44568b (Cambio paradigma para consumo de API REST entidad mascota)
+import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.component';
+import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
+import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
+import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 
 
 @NgModule({
@@ -30,7 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     SobreNosotrosComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    ClienteTableComponent,
+    ClienteDetallesComponent,
+    ClienteFormComponent,
+    ClienteUpdateComponent
   ],
   imports: [
     BrowserModule,
