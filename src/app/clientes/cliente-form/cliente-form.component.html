@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h2>Formulario de Cliente</h2>
   
-  <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
       <!-- Nombre -->
       <div class="form-group mb-3">
           <label for="nombre">Nombre</label>
@@ -10,9 +10,12 @@
               id="nombre" 
               name="nombre" 
               class="form-control" 
-              [(ngModel)]="formCliente.nombre" 
-              required
+              formControlName="nombre"
+              [class.is-invalid]="clienteForm.get('nombre')?.invalid && clienteForm.get('nombre')?.touched"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('nombre')?.errors?.['required']">
+            El nombre es requerido
+          </div>
       </div>
 
       <!-- Apellido -->
@@ -23,9 +26,12 @@
               id="apellido" 
               name="apellido" 
               class="form-control" 
-              [(ngModel)]="formCliente.apellido" 
-              required
+              formControlName="apellido"
+              [class.is-invalid]="clienteForm.get('apellido')?.invalid && clienteForm.get('apellido')?.touched"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('apellido')?.errors?.['required']">
+            El apellido es requerido
+          </div>
       </div>
 
       <!-- Usuario -->
@@ -36,9 +42,12 @@
               id="usuario" 
               name="usuario" 
               class="form-control" 
-              [(ngModel)]="formCliente.usuario" 
-              required
+              formControlName="usuario"
+              [class.is-invalid]="clienteForm.get('usuario')?.invalid && clienteForm.get('usuario')?.touched"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('usuario')?.errors?.['required']">
+            El usuario es requerido
+          </div>
       </div>
 
       <!-- Teléfono -->
@@ -49,11 +58,16 @@
               id="telefono" 
               name="telefono" 
               class="form-control" 
-              [(ngModel)]="formCliente.telefono" 
-              required
-              pattern="[0-9]{9}"
+              formControlName="telefono"
+              [class.is-invalid]="clienteForm.get('telefono')?.invalid && clienteForm.get('telefono')?.touched"
               placeholder="Ej: 987654321"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('telefono')?.errors?.['required']">
+            El teléfono es requerido
+          </div>
+          <div class="invalid-feedback" *ngIf="clienteForm.get('telefono')?.errors?.['pattern']">
+            El teléfono debe tener 9 dígitos
+          </div>
       </div>
 
       <!-- Email -->
@@ -64,9 +78,15 @@
               id="email" 
               name="email" 
               class="form-control" 
-              [(ngModel)]="formCliente.email" 
-              required
+              formControlName="email"
+              [class.is-invalid]="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('email')?.errors?.['required']">
+            El email es requerido
+          </div>
+          <div class="invalid-feedback" *ngIf="clienteForm.get('email')?.errors?.['email']">
+            Ingrese un email válido
+          </div>
       </div>
 
       <!-- Contraseña -->
@@ -77,10 +97,15 @@
               id="contrasena" 
               name="contrasena" 
               class="form-control" 
-              [(ngModel)]="formCliente.contrasena" 
-              required
-              minlength="6"
+              formControlName="contrasena"
+              [class.is-invalid]="clienteForm.get('contrasena')?.invalid && clienteForm.get('contrasena')?.touched"
           >
+          <div class="invalid-feedback" *ngIf="clienteForm.get('contrasena')?.errors?.['required']">
+            La contraseña es requerida
+          </div>
+          <div class="invalid-feedback" *ngIf="clienteForm.get('contrasena')?.errors?.['minlength']">
+            La contraseña debe tener al menos 6 caracteres
+          </div>
       </div>
 
       <!-- Botones -->
@@ -88,7 +113,7 @@
           <button type="button" class="btn btn-secondary" (click)="cancelar()">
               Cancelar
           </button>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-success" [disabled]="clienteForm.invalid">
               Guardar Cliente
           </button>
       </div>

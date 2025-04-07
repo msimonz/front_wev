@@ -1,39 +1,36 @@
-import { Component } from '@angular/core';
-import { Cliente } from '../../model/cliente';
-import { ClienteService } from 'src/app/service/cliente.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClienteService } from 'src/app/service/cliente.service';
 
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './cliente-form.component.html',
   styleUrls: ['./cliente-form.component.css']
 })
-export class ClienteFormComponent {
-  formCliente: Cliente = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    usuario: '',
-    telefono: '',
-    email: '',
-    contrasena: ''
-  };
+export class ClienteFormComponent implements OnInit {
+  clienteForm!: FormGroup;
 
   constructor(
-    private clienteService: ClienteService,
-    private router: Router
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private clienteService: ClienteService
   ) {}
 
+  ngOnInit(): void {
+    this.clienteForm = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.minLength(2)]],
+      usuario: ['', [Validators.required, Validators.minLength(4)]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
   onSubmit() {
-    if (this.validarFormulario()) {
-      const clienteParaEnviar = {
-        nombre: this.formCliente.nombre,
-        apellido: this.formCliente.apellido,
-        usuario: this.formCliente.usuario,
-        telefono: this.formCliente.telefono,
-        email: this.formCliente.email,
-        contrasena: this.formCliente.contrasena
-      };
+    if (this.clienteForm.valid) {
+      const clienteParaEnviar = this.clienteForm.value;
 
       this.clienteService.addCliente(clienteParaEnviar)
         .subscribe({
@@ -48,17 +45,17 @@ export class ClienteFormComponent {
           }
         });
     } else {
-      alert('Por favor, complete todos los campos requeridos');
+      this.marcarCamposInvalidos();
     }
   }
 
-  validarFormulario(): boolean {
-    return !!(this.formCliente.nombre && 
-              this.formCliente.apellido && 
-              this.formCliente.usuario && 
-              this.formCliente.telefono && 
-              this.formCliente.email && 
-              this.formCliente.contrasena);
+  marcarCamposInvalidos(): void {
+    Object.keys(this.clienteForm.controls).forEach(key => {
+      const control = this.clienteForm.get(key);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
   }
 
   cancelar() {
