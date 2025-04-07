@@ -2,7 +2,7 @@ export interface Mascota{
     id: number;
     nombre: string;
     edad: number;
-    especie: string;
+    tipo: string;
     raza: string;
     sexo: string;
     estado: string;

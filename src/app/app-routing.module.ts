@@ -5,8 +5,8 @@ import { MascotaDetallesComponent } from './mascotas/mascota-detalles/mascota-de
 import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update.component';
 import { MascotaFormComponent } from './mascotas/mascota-form/mascota-form.component';
 import { HomeComponent } from './home/home/home.component';
-import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component'; // Asegúrate de que esto esté importado
-import { ServiciosComponent } from './servicios/servicios.component'; // Asegúrate de que esto esté importado
+import { SobreNosotrosComponent } from './home/sobre-nosotros/sobre-nosotros.component'; // Asegúrate de que esto esté importado
+import { ServiciosComponent } from './home/servicios/servicios.component'; // Asegúrate de que esto esté importado
 
 
 const routes: Routes = [

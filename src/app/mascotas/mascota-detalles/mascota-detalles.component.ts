@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../model/mascota';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
 
 @Component({
@@ -13,14 +13,23 @@ export class MascotaDetallesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private mascotaService: MascotaService
   ) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    const mascotaEncontrada = this.mascotaService.findById(id);
-    if (mascotaEncontrada) {
-      this.mascota = mascotaEncontrada;
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      this.mascotaService.findById(id).subscribe({
+        next: (mascota) => {
+          this.mascota = mascota;
+        },
+        error: (error) => {
+          console.error('Error al cargar mascota:', error);
+          alert('Error al cargar los detalles de la mascota');
+          this.router.navigate(['/mascota/tablaMascotas']);
+        }
+      });
+    });
   }
 }
