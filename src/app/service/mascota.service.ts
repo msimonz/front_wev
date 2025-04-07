@@ -25,7 +25,7 @@ export class MascotaService {
   }
 
   updateMascota(mascota: Mascota): Observable<any> {
-    return this.http.post(`${this.apiUrl}/update`, mascota);
+    return this.http.put(`${this.apiUrl}/update`, mascota);
   }
 
   deleteMascota(id: number): Observable<any> {
