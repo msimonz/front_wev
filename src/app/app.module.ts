@@ -11,8 +11,8 @@ import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update
 import { HomeComponent } from './home/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
-import { ServiciosComponent } from './servicios/servicios.component';
+import { SobreNosotrosComponent } from './home/sobre-nosotros/sobre-nosotros.component';
+import { ServiciosComponent } from './home/servicios/servicios.component';
 
 
 @NgModule({
