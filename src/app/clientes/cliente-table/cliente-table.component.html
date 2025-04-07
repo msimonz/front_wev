@@ -5,7 +5,7 @@
         <!-- Botón para añadir una nueva mascota -->
         <div class="titulo">
             <h2>Clientes</h2>
-            <a class="btn btn-primary" [routerLink]="['/mascota/crearMascota']">
+            <a class="btn btn-primary" [routerLink]="['/cliente/crearCliente']">
                 Añadir Cliente
             </a>
         </div>
@@ -24,7 +24,7 @@
             <tbody>
                 <tr *ngFor="let cliente of clientes">
                     <td>
-                        <a [routerLink]="['cliente/detallesClientes', cliente.id]">
+                        <a [routerLink]="['/cliente/detallesCliente', cliente.id]">
                             {{ cliente.nombre }}
                         </a>
                     </td>
@@ -33,7 +33,7 @@
                     <td>{{ cliente.telefono }}</td>   
                     <td>
                         <a class="btn btn-warning btn-sm me-2" 
-                           [routerLink]="['cliente/actualizarCliente', cliente.id]">
+                           [routerLink]="['/cliente/actualizarCliente', cliente.id]">
                             Actualizar
                         </a>
                         <button class="btn btn-danger btn-sm" 

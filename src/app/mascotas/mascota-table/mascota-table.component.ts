@@ -39,13 +39,6 @@ export class MascotaTableComponent implements OnInit {
     }
   }
 
-  agregarMascota(mascota: Mascota) {
-    this.mascotaService.addMascota(mascota).subscribe({
-      next: () => this.cargarMascotas(),
-      error: (err) => console.error('Error al agregar mascota:', err)
-    });
-  }
-
   actualizarMascota(mascota: Mascota) {
     this.mascotaService.updateMascota(mascota).subscribe({
       next: () => this.cargarMascotas(),

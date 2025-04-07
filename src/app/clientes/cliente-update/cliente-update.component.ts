@@ -25,7 +25,7 @@ export class ClienteUpdateComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       apellido: ['', [Validators.required, Validators.minLength(2)]],
       usuario: ['', [Validators.required, Validators.minLength(4)]],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-10]{10}$')]],
       email: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -68,11 +68,12 @@ export class ClienteUpdateComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al actualizar:', err);
-          alert('Error al actualizar el cliente');
+          alert('Error al actualizar el cliente: ' + err.message);
         }
       });
     } else {
       this.marcarCamposInvalidos();
+      alert('Por favor, complete todos los campos requeridos correctamente');
     }
   }
 

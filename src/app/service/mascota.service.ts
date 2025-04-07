@@ -20,12 +20,12 @@ export class MascotaService {
     return this.http.get<Mascota>(`${this.apiUrl}/find/${id}`);
   }
 
-  addMascota(mascota: Omit<Mascota, 'id'>): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, mascota);
+  addMascota(mascota: Omit<Mascota, 'id'>, cliente_id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add?cliente_id=${cliente_id}`, mascota);
   }
 
   updateMascota(mascota: Mascota): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update`, mascota);
+    return this.http.post(`${this.apiUrl}/update`, mascota);
   }
 
   deleteMascota(id: number): Observable<any> {

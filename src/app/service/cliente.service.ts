@@ -28,6 +28,6 @@ export class ClienteService {
   }
 
   updateCliente(cliente: Cliente): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update`, cliente);
+    return this.http.put(`${this.apiUrl}/update/${cliente.id}`, cliente);
   }
 }
