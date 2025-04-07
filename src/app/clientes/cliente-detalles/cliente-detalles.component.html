@@ -3,26 +3,63 @@
 
   <!-- Si el cliente existe, muestra sus datos -->
   <ng-container *ngIf="cliente">
-      <div class="card">
-          <div class="card-body">
-              <ul class="list-unstyled">
-                  <li class="mb-2"><strong>Nombre:</strong> {{ cliente.nombre }}</li>
-                  <li class="mb-2"><strong>Apellido:</strong> {{ cliente.apellido }}</li>
-                  <li class="mb-2"><strong>Usuario:</strong> {{ cliente.usuario }}</li>
-                  <li class="mb-2"><strong>Teléfono:</strong> {{ cliente.telefono }}</li>
-                  <li class="mb-2"><strong>Email:</strong> {{ cliente.email }}</li>
-              </ul>
+    <div class="card mb-4">
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li class="mb-2"><strong>Nombre:</strong> {{ cliente.nombre }}</li>
+          <li class="mb-2"><strong>Apellido:</strong> {{ cliente.apellido }}</li>
+          <li class="mb-2"><strong>Usuario:</strong> {{ cliente.usuario }}</li>
+          <li class="mb-2"><strong>Teléfono:</strong> {{ cliente.telefono }}</li>
+          <li class="mb-2"><strong>Email:</strong> {{ cliente.email }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sección de Mascotas -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Mascotas del Cliente</h5>
+      </div>
+      <div class="card-body">
+        <!-- Si hay error al cargar mascotas -->
+        <div *ngIf="errorMascotas" class="alert alert-danger">
+          {{ errorMascotas }}
+        </div>
+
+        <!-- Si no hay mascotas -->
+        <div *ngIf="mascotas.length === 0 && !errorMascotas" class="alert alert-info">
+          Este cliente no tiene mascotas registradas.
+        </div>
+
+        <!-- Lista de mascotas -->
+        <div *ngIf="mascotas.length > 0" class="row">
+          <div *ngFor="let mascota of mascotas" class="col-md-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{{ mascota.nombre }}</h5>
+                <ul class="list-unstyled">
+                  <li><strong>Raza:</strong> {{ mascota.raza }}</li>
+                  <li><strong>Edad:</strong> {{ mascota.edad }} años</li>
+                </ul>
+                <a [routerLink]="['/mascotas/detalles', mascota.id]" class="btn btn-info btn-sm">
+                  Ver Detalles
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
-      <div class="mt-3">
-          <a href="/cliente/tablaClientes" class="btn btn-secondary">Volver a la lista</a>
-      </div>
+    </div>
+
+    <div class="mt-3">
+      <a routerLink="/cliente/tablaClientes" class="btn btn-secondary">Volver a la lista</a>
+    </div>
   </ng-container>
 
   <!-- Si el cliente NO existe, muestra un mensaje -->
   <ng-container *ngIf="!cliente">
-      <div class="alert alert-info">
-          <p>Seleccione un cliente de la tabla</p>
-      </div>
+    <div class="alert alert-info">
+      <p>Seleccione un cliente de la tabla</p>
+    </div>
   </ng-container>
 </div>

@@ -18,6 +18,7 @@ import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.co
 import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

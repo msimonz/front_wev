@@ -11,6 +11,7 @@ import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.co
 import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -29,6 +30,9 @@ const routes: Routes = [
   { path: 'cliente/detallesCliente/:id', component: ClienteDetallesComponent },
   { path: 'cliente/actualizarCliente/:id', component: ClienteUpdateComponent },
   { path: 'cliente/crearCliente', component: ClienteFormComponent },
+
+  //rutas Login
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

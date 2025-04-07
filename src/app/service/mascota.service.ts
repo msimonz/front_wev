@@ -31,4 +31,8 @@ export class MascotaService {
   deleteMascota(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
+
+  getMascotasByClienteId(clienteId: number): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${this.apiUrl}/cliente/${clienteId}`);
+  }
 }
