@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente } from '../model/cliente';
+import { Mascota } from '../model/mascota';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,14 @@ export class ClienteService {
   updateCliente(cliente: Cliente): Observable<any> {
     return this.http.put(`${this.apiUrl}/update/${cliente.id}`, cliente);
   }
+
+  authenticate(usuario: string, contrasena: string): Observable<Cliente> {
+    const loginData = { usuario, contrasena };
+    return this.http.post<Cliente>(`${this.apiUrl}/login`, loginData);
+  }
+
+  getMascotasByClienteId(clienteId: number): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${this.apiUrl}/cliente/${clienteId}/mascotas`);
+  }
+
 }

@@ -18,6 +18,7 @@ import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.co
 import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
+import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update
     ClienteTableComponent,
     ClienteDetallesComponent,
     ClienteFormComponent,
-    ClienteUpdateComponent
+    ClienteUpdateComponent,
+    ClienteLoginComponent
   ],
   imports: [
     BrowserModule,

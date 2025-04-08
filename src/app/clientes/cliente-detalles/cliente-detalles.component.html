@@ -1,28 +1,40 @@
 <div class="container mt-4">
-  <h4>Detalles del Cliente</h4>
-
-  <!-- Si el cliente existe, muestra sus datos -->
-  <ng-container *ngIf="cliente">
-      <div class="card">
-          <div class="card-body">
-              <ul class="list-unstyled">
-                  <li class="mb-2"><strong>Nombre:</strong> {{ cliente.nombre }}</li>
-                  <li class="mb-2"><strong>Apellido:</strong> {{ cliente.apellido }}</li>
-                  <li class="mb-2"><strong>Usuario:</strong> {{ cliente.usuario }}</li>
-                  <li class="mb-2"><strong>Teléfono:</strong> {{ cliente.telefono }}</li>
-                  <li class="mb-2"><strong>Email:</strong> {{ cliente.email }}</li>
-              </ul>
-          </div>
-      </div>
-      <div class="mt-3">
-          <a href="/cliente/tablaClientes" class="btn btn-secondary">Volver a la lista</a>
-      </div>
-  </ng-container>
-
-  <!-- Si el cliente NO existe, muestra un mensaje -->
-  <ng-container *ngIf="!cliente">
-      <div class="alert alert-info">
-          <p>Seleccione un cliente de la tabla</p>
-      </div>
-  </ng-container>
-</div>
+    <h4>Detalles del Cliente</h4>
+  
+    <!-- Si el cliente existe, muestra sus datos -->
+    <ng-container *ngIf="cliente">
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Nombre:</strong> {{ cliente.nombre }}</li>
+                    <li class="mb-2"><strong>Apellido:</strong> {{ cliente.apellido }}</li>
+                    <li class="mb-2"><strong>Usuario:</strong> {{ cliente.usuario }}</li>
+                    <li class="mb-2"><strong>Teléfono:</strong> {{ cliente.telefono }}</li>
+                    <li class="mb-2"><strong>Email:</strong> {{ cliente.email }}</li>
+                </ul>
+            </div>
+        </div>
+  
+        <!-- Mostrar mascotas asociadas al cliente -->
+        <div *ngIf="mascotas.length > 0 ">
+          <h5>Mascotas del Cliente</h5>
+          <ul class="list-unstyled">
+            <li *ngFor="let mascota of mascotas" class="mb-2">
+              <strong>{{ mascota.nombre }}</strong> - {{ mascota.tipo }}
+            </li>
+          </ul>
+        </div>
+  
+        <div class="mt-3">
+            <a href="/cliente/tablaClientes" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </ng-container>
+  
+    <!-- Si el cliente NO existe, muestra un mensaje -->
+    <ng-container *ngIf="!cliente">
+        <div class="alert alert-info">
+            <p>Seleccione un cliente de la tabla</p>
+        </div>
+    </ng-container>
+  </div>
+  
