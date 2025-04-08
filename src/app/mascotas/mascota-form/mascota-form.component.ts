@@ -16,7 +16,7 @@ export class MascotaFormComponent implements OnInit {
   busquedaForm!: FormGroup;
   clientes: Cliente[] = [];
   clientesFiltrados: Cliente[] = [];
-  clienteSeleccionado: Cliente | null = null;
+  clienteSeleccionado: Cliente | undefined = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,14 +81,19 @@ export class MascotaFormComponent implements OnInit {
     );
   }
 
-  seleccionarCliente(cliente: Cliente): void {
-    this.clienteSeleccionado = cliente;
+  seleccionarCliente(event: Event): void {
+    this.clienteSeleccionado = this.clientes.find(cliente => cliente.email === (event.target as HTMLInputElement).value);
+    console.log(this.clienteSeleccionado);
+
+    if(event.target != null){
+      console.log((event.target as HTMLInputElement).value);
+    }
     this.busquedaForm.get('terminoBusqueda')?.setValue('');
     this.clientesFiltrados = [];
   }
 
   limpiarSeleccion(): void {
-    this.clienteSeleccionado = null;
+    this.clienteSeleccionado = undefined;
   }
 
   onSubmit() {

@@ -56,37 +56,22 @@
       <!-- Búsqueda de Cliente -->
       <div class="form-group mb-3">
           <label>Buscar Cliente</label>
-          <div class="input-group">
-              <input 
-                  type="text" 
-                  class="form-control" 
-                  [formGroup]="busquedaForm"
-                  formControlName="terminoBusqueda"
-                  placeholder="Buscar por nombre, email o usuario..."
-                  [class.is-invalid]="!clienteSeleccionado && mascotaForm.touched"
-              >
-              <button 
-                  *ngIf="clienteSeleccionado" 
-                  type="button" 
-                  class="btn btn-outline-secondary" 
-                  (click)="limpiarSeleccion()"
-              >
-                  ✕
-              </button>
+          <div class="input-group" *ngIf="clientes !== []">
+            
+            <select 
+            class="list-group-item list-group-item-action" 
+            [formGroup]="busquedaForm"
+            [class.is-invalid]="!clienteSeleccionado && mascotaForm.touched"
+            onkeypress="return cliente"
+            (change)="seleccionarCliente($event)" 
+          >
+            <option *ngFor="let cliente of clientes" 
+            onkeypress= "return cliente">
+              {{ cliente.email }}
+            </option>
+          </select>
           </div>
           
-          <!-- Lista de resultados -->
-          <div *ngIf="clientesFiltrados.length > 0 && !clienteSeleccionado" class="list-group mt-2">
-              <button 
-                  type="button"
-                  class="list-group-item list-group-item-action"
-                  *ngFor="let cliente of clientesFiltrados"
-                  (click)="seleccionarCliente(cliente)"
-              >
-                  {{cliente.nombre}} {{cliente.apellido}} - {{cliente.email}}
-              </button>
-          </div>
-
           <!-- Cliente seleccionado -->
           <div *ngIf="clienteSeleccionado" class="mt-2">
               <div class="card">
