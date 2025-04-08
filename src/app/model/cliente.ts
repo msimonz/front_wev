@@ -9,7 +9,7 @@ export interface Cliente {
     telefono: string;
     email: string;
     contrasena: string;
-    mascotas: Mascota[];
-    citas: Cita[];
+    mascotas?: Mascota[];
+    citas?: Cita[];
   }
   

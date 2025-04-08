@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <!-- Botón para añadir una nueva mascota -->
         <div class="titulo">
-            <h2>Mascotas</h2>
+            <h2>Lista de Mascotas</h2>
             <a class="btn btn-primary" [routerLink]="['/mascota/crearMascota']">
                 Añadir Mascota
             </a>
@@ -12,7 +12,7 @@
     
         <!-- Tabla de mascotas -->
         <table class="table table-striped">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>Nombre</th>
                     <th>Edad</th>
@@ -27,7 +27,7 @@
             <tbody>
                 <tr *ngFor="let mascota of mascotas">
                     <td>
-                        <a [routerLink]="['/mascota/detallesMascota', mascota.id]">
+                        <a class="name" [routerLink]="['/mascota/detallesMascota', mascota.id]">
                             {{ mascota.nombre }}
                         </a>
                     </td>

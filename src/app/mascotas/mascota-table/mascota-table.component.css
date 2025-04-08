@@ -1,10 +1,13 @@
 /* Estilos generales */
 html {
     scroll-behavior: smooth;
+    
 }
 
 main{
     margin-top: 150px;
+    
+
 }
 
 * { 
@@ -24,7 +27,7 @@ main{
 }
 
 body {
-    background: linear-gradient(135deg, #122732 50%, #F8FAFC 50%);
+    
     font-family: 'Poppins', sans-serif;
     color: #122732;
     margin: 0;
@@ -52,7 +55,7 @@ app-header {
 .container {
     margin-top: 80px; /* Ajusta el espacio para que no quede tapado por el header */
     width: 100%;
-    max-width: 1000px;
+    max-width: 1250px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -85,7 +88,9 @@ table th, table td {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
-
+.name{
+    font-weight: 900;
+}
 .table tbody tr:last-child td:first-child {
     border-bottom-left-radius: 15px;
 }
@@ -116,7 +121,7 @@ a {
 .btn-primary, .btn-danger, .btn-warning {
     color: white !important;
     padding: 10px 20px;
-    border-radius: 12px;
+    border-radius: 8px;
     font-weight: bold;
     transition: 0.3s;
     margin: 0 auto !important;
@@ -124,14 +129,15 @@ a {
 
 .btn-primary {
     background-color: #C9DCE8;
-    color: #122732;
-
+    color: #122732 !important;
+    width: 1250px;
 }
 
 .btn-primary:hover {
     background-color: #122732;
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    color: #C9DCE8 !important;
 }
 
 .btn-warning {
