@@ -3,11 +3,7 @@ html {
     scroll-behavior: smooth;
 }
 
-* { 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -16,8 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 1000px;
     justify-content: center;
-    min-height: 100vh;
 }
 
 /* Contenedor del formulario */
@@ -30,13 +26,11 @@ body {
     backdrop-filter: blur(10px);
     width: 100%;
     max-width: 400px;
+    margin-top: 200px;
+    margin-bottom: 80px;
+    margin-inline: auto;
 }
 
-/* Logo */
-.login-container img {
-    width: 100px;
-    margin-bottom: 15px;
-}
 
 /* Título */
 h2 {
