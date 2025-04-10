@@ -37,8 +37,4 @@ export class ClienteService {
     return this.http.post<Cliente>(`${this.apiUrl}/login`, loginData);
   }
 
-  getMascotasByClienteId(clienteId: number): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>(`${this.apiUrl}/cliente/${clienteId}/mascotas`);
-  }
-
 }
