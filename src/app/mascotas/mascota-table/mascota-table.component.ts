@@ -22,7 +22,9 @@ export class MascotaTableComponent implements OnInit {
 
   cargarMascotas() {
     this.mascotaService.findAll().subscribe({
-      next: (mascotas) => (this.mascotas = mascotas),
+      next: (mascotas) => {(this.mascotas = mascotas);
+        console.log("Mascotas", this.mascotas[0].imagen);
+      },
       error: (err) => console.error('Error al cargar mascotas:', err)
     });
   }
