@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/model/cliente';
+import { Mascota } from 'src/app/model/mascota';
 import { ClienteService } from 'src/app/service/cliente.service';
+import { MascotaService } from 'src/app/service/mascota.service';
 
 @Component({
   selector: 'app-cliente-update',
@@ -12,12 +14,15 @@ import { ClienteService } from 'src/app/service/cliente.service';
 export class ClienteUpdateComponent implements OnInit {
   clienteForm!: FormGroup;
   id!: number;
+  mascotas: Mascota[] = [];
+  errorMascotas: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private mascotaService: MascotaService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +48,8 @@ export class ClienteUpdateComponent implements OnInit {
           usuario: cliente.usuario,
           telefono: cliente.telefono,
           email: cliente.email,
-          contrasena: cliente.contrasena
+          contrasena: cliente.contrasena,
+          mascotas: cliente.mascotas
         });
       },
       error: (error) => {
@@ -58,13 +64,14 @@ export class ClienteUpdateComponent implements OnInit {
     if (this.clienteForm.valid) {
       const clienteActualizado: Cliente = {
         id: this.id,
+        mascotas: this.mascotas,
         ...this.clienteForm.value
       };
-
+      console.log(clienteActualizado);
       this.clienteService.updateCliente(clienteActualizado).subscribe({
         next: () => {
           alert('Cliente actualizado correctamente');
-          this.router.navigate(['/cliente/tablaClientes']);
+          this.router.navigate(['/cliente/detallesCliente', this.id]);
         },
         error: (err) => {
           console.error('Error al actualizar:', err);
@@ -82,6 +89,18 @@ export class ClienteUpdateComponent implements OnInit {
       const control = this.clienteForm.get(key);
       if (control?.invalid) {
         control.markAsTouched();
+      }
+    });
+  }
+
+  loadMascotasCliente(clienteId: number): void {
+    this.mascotaService.getMascotasByClienteId(clienteId).subscribe({
+      next: (mascotas) => {
+        this.mascotas = mascotas;
+      },
+      error: (error) => {
+        console.error('Error al cargar mascotas:', error);
+        this.errorMascotas = 'Error al cargar las mascotas del cliente';
       }
     });
   }
