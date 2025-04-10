@@ -6,5 +6,5 @@ export interface Mascota{
     raza: string;
     sexo: string;
     estado: string;
-    imagen?: string;
+    imagen: string;
 }
