@@ -19,6 +19,9 @@ import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-de
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
+import { DashboardEstadisticasComponent } from './dashboard/dashboard-estadisticas/dashboard-estadisticas.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -37,14 +40,16 @@ import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.compon
     ClienteDetallesComponent,
     ClienteFormComponent,
     ClienteUpdateComponent,
-    ClienteLoginComponent
+    ClienteLoginComponent,
+    DashboardEstadisticasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
