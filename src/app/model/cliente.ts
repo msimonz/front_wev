@@ -10,5 +10,5 @@ export interface Cliente {
     email: string;
     contrasena: string;
     mascotas?: Mascota[];
-  }
-  
+    citas?: Cita[];
+}
