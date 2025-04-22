@@ -12,6 +12,8 @@ import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-de
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
+import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
+import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -31,8 +33,12 @@ const routes: Routes = [
   { path: 'cliente/actualizarCliente/:id', component: ClienteUpdateComponent },
   { path: 'cliente/crearCliente', component: ClienteFormComponent },
 
+  // Rutas de veterinarios
+  { path: 'veterinario/detallesVeterinario/:id', component: VeterinarioDetallesComponent },
+
   //Rutas de login
   { path: 'cliente/login', component: ClienteLoginComponent },
+  { path: 'veterinario/login', component: VeterinarioLoginComponent },
 ];
 
 @NgModule({

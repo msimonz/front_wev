@@ -19,6 +19,8 @@ import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-de
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
+import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
+import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.compon
     ClienteFormComponent,
     ClienteUpdateComponent,
     ClienteLoginComponent,
+    VeterinarioLoginComponent,
+    VeterinarioDetallesComponent,
   ],
   imports: [
     BrowserModule,
