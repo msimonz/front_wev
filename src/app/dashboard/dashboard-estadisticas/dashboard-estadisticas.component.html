@@ -1,0 +1,13 @@
+<app-header></app-header>
+<main>
+    <div>
+        <canvas baseChart
+                [datasets]="barChartData.datasets"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="true"
+                [chartType]="'bar'">
+        </canvas>
+      </div>
+</main>
+<app-footer></app-footer>
