@@ -14,6 +14,7 @@ import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.compo
 import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
 import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
 import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
+import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-suministrar/veterinario-suministrar.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -35,6 +36,7 @@ const routes: Routes = [
 
   // Rutas de veterinarios
   { path: 'veterinario/detallesVeterinario/:id', component: VeterinarioDetallesComponent },
+  { path: 'veterinario/suministrar', component: VeterinarioSuministrarComponent },
 
   //Rutas de login
   { path: 'cliente/login', component: ClienteLoginComponent },

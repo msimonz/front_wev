@@ -118,13 +118,13 @@ a {
 }
 
 /* Estilo para los botones */
-.btn-primary, .btn-danger, .btn-warning {
+.btn-primary, .btn-danger, .btn-warning, .btn-info {
     color: white !important;
-    padding: 10px 20px;
+    padding: 10px 20px 10px 20px;
     border-radius: 8px;
     font-weight: bold;
     transition: 0.3s;
-    margin: 0 auto !important;
+    margin: 10px auto !important;
 }
 
 .btn-primary {
@@ -158,6 +158,16 @@ a {
 
 .btn-danger:hover {
     background-color: #C9302C;
+    transform: translateY(-3px);
+}
+
+.btn-info{
+    background-color: #07c11c;
+    color: white;
+}
+
+.btn-info:hover{
+    background-color: #04550e;
     transform: translateY(-3px);
 }
 
