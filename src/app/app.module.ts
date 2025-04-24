@@ -22,6 +22,9 @@ import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.compon
 import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
 import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
 import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-suministrar/veterinario-suministrar.component';
+import { VeterinarioTableComponent } from './veterinarios/veterinario-table/veterinario-table.component';
+import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
+import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-sumi
     VeterinarioLoginComponent,
     VeterinarioDetallesComponent,
     VeterinarioSuministrarComponent,
+    VeterinarioTableComponent,
+    VeterinarioUpdateComponent,
+    VeterinarioFormsComponent,
   ],
   imports: [
     BrowserModule,

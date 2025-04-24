@@ -6,15 +6,21 @@
         <!-- Búsqueda de Cliente -->
         <div class="form-group mb-3">
             <label>Buscar Cliente</label>
-            <div class="input-group" *ngIf="clientes !== []">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="terminoBusqueda"
+                    placeholder="Buscar por nombre, apellido o email"
+                >
                 <select 
-                    class="list-group-item list-group-item-action" 
-                    [formGroup]="busquedaForm"
+                    class="form-control" 
                     [class.is-invalid]="!clienteSeleccionado && mascotaForm.touched"
                     (change)="seleccionarCliente($event)"
                 >
-                    <option *ngFor="let cliente of clientes">
-                        {{ cliente.email }}
+                    <option value="">Seleccione un cliente</option>
+                    <option *ngFor="let cliente of clientesFiltrados" [value]="cliente.email">
+                        {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
                     </option>
                 </select>
             </div>
@@ -78,19 +84,19 @@
 
         <!-- Especie -->
         <div class="form-group mb-3">
-            <label for="especie">Especie</label>
+            <label for="tipo">Tipo</label>
             <select 
-                id="especie" 
-                name="especie" 
+                id="tipo" 
+                name="tipo" 
                 class="form-control" 
-                formControlName="especie"
-                [class.is-invalid]="mascotaForm.get('especie')?.invalid && mascotaForm.get('especie')?.touched"
+                formControlName="tipo"
+                [class.is-invalid]="mascotaForm.get('tipo')?.invalid && mascotaForm.get('tipo')?.touched"
             >
                 <option value="Perro">Perro</option>
                 <option value="Gato">Gato</option>
             </select>
-            <div class="invalid-feedback" *ngIf="mascotaForm.get('especie')?.errors?.['required']">
-                La especie es requerida
+            <div class="invalid-feedback" *ngIf="mascotaForm.get('tipo')?.errors?.['required']">
+                El tipo es requerido
             </div>
         </div>
 

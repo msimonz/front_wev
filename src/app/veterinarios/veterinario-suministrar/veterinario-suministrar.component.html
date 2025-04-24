@@ -48,7 +48,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header">
-            <h5 class="mb-0">Tratamientos Disponibles</h5>
+            <h5 class="mb-0">Medicamentos Disponibles</h5>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -56,18 +56,21 @@
                 <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>ID Medicamento</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let tratamiento of tratamientos">
-                    <td>{{ tratamiento.nombre }}</td>
-                    <td>{{ tratamiento.idMedicamento }}</td>
+                  <tr *ngFor="let medicamento of medicamentos">
+                    <td>{{ medicamento.nombre }}</td>
+                    <td>{{ medicamento.precioVenta | currency }}</td>
+                    <td>{{ medicamento.stock }}</td>
                     <td>
                       <button class="btn btn-primary btn-sm"
-                              (click)="seleccionarTratamiento(tratamiento)"
-                              [class.active]="tratamientoSeleccionado?.id === tratamiento.id">
+                              (click)="seleccionarMedicamento(medicamento)"
+                              [class.active]="medicamentoSeleccionado?.id === medicamento.id"
+                              [disabled]="medicamento.stock <= 0">
                         Seleccionar
                       </button>
                     </td>
@@ -85,11 +88,12 @@
       <div class="col-12 text-center">
         <button class="btn btn-success" 
                 (click)="asignarTratamiento()"
-                [disabled]="!tratamientoSeleccionado">
+                [disabled]="!medicamentoSeleccionado">
           Asignar Tratamiento
         </button>
 
         <a class="btn btn-primary" [routerLink]="['/mascota/tablaMascotas']">Volver a Tabla</a>
+        <a class="btn btn-primary" [routerLink]="['/veterinario/detallesVeterinario', veterinario.id]">Volver a perfil</a>
       </div>
     </div>
   </div>

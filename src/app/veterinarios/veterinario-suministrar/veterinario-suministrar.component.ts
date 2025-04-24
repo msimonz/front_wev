@@ -4,7 +4,7 @@ import { VeterinarioService } from 'src/app/service/veterinario.service';
 import { MascotaService } from 'src/app/service/mascota.service';
 import { Veterinario } from 'src/app/model/veterinario';
 import { Mascota } from 'src/app/model/mascota';
-import { Tratamiento } from 'src/app/model/tratamiento';
+import { Medicamento } from 'src/app/model/medicamento';
 
 @Component({
   selector: 'app-veterinario-suministrar',
@@ -13,12 +13,12 @@ import { Tratamiento } from 'src/app/model/tratamiento';
 })
 export class VeterinarioSuministrarComponent implements OnInit {
   mascotas: Mascota[] = [];
-  tratamientos: Tratamiento[] = [];
+  medicamentos: Medicamento[] = [];
   veterinario: Veterinario | null = null;
   loading: boolean = true;
   error: string = '';
   mascotaSeleccionada: Mascota | null = null;
-  tratamientoSeleccionado: Tratamiento | null = null;
+  medicamentoSeleccionado: Medicamento | null = null;
 
   constructor(
     private router: Router,
@@ -52,7 +52,7 @@ export class VeterinarioSuministrarComponent implements OnInit {
       next: (mascota) => {
         this.mascotas = [mascota];
         this.mascotaSeleccionada = mascota;
-        this.cargarTratamientos();
+        this.cargarMedicamentos();
       },
       error: (error) => {
         console.error('Error al cargar la mascota:', error);
@@ -62,16 +62,16 @@ export class VeterinarioSuministrarComponent implements OnInit {
     });
   }
 
-  cargarTratamientos(): void {
+  cargarMedicamentos(): void {
     if (this.veterinario) {
-      this.veterinarioService.getTratamientos(this.veterinario.id).subscribe({
-        next: (tratamientos) => {
-          this.tratamientos = tratamientos;
+      this.veterinarioService.getMedicamentos().subscribe({
+        next: (medicamentos) => {
+          this.medicamentos = medicamentos;
           this.loading = false;
         },
         error: (error) => {
-          console.error('Error al cargar tratamientos:', error);
-          this.error = 'Error al cargar los tratamientos';
+          console.error('Error al cargar medicamentos:', error);
+          this.error = 'Error al cargar los medicamentos';
           this.loading = false;
         }
       });
@@ -84,7 +84,7 @@ export class VeterinarioSuministrarComponent implements OnInit {
     this.mascotaService.findAll().subscribe({
       next: (mascotas) => {
         this.mascotas = mascotas;
-        this.cargarTratamientos();
+        this.cargarMedicamentos();
       },
       error: (error) => {
         console.error('Error al cargar mascotas:', error);
@@ -98,32 +98,32 @@ export class VeterinarioSuministrarComponent implements OnInit {
     this.mascotaSeleccionada = mascota;
   }
 
-  seleccionarTratamiento(tratamiento: Tratamiento): void {
-    this.tratamientoSeleccionado = tratamiento;
+  seleccionarMedicamento(medicamento: Medicamento): void {
+    this.medicamentoSeleccionado = medicamento;
   }
 
   asignarTratamiento(): void {
-    if (!this.mascotaSeleccionada || !this.tratamientoSeleccionado || !this.veterinario) {
-      this.error = 'Por favor seleccione una mascota y un tratamiento';
+    if (!this.mascotaSeleccionada || !this.medicamentoSeleccionado || !this.veterinario) {
+      this.error = 'Por favor seleccione una mascota y un medicamento';
       return;
     }
 
     this.loading = true;
     this.error = '';
 
-    this.mascotaService.asignarTratamiento(
-      this.mascotaSeleccionada.id,
-      this.tratamientoSeleccionado.id,
-      this.veterinario.id
-    ).subscribe({
+    this.veterinarioService.createTratamiento({
+      mascotaId: this.mascotaSeleccionada.id,
+      veterinarioId: this.veterinario.id,
+      medicamentoId: this.medicamentoSeleccionado.id
+    }).subscribe({
       next: (response: any) => {
         if (response.error) {
           this.error = response.error;
         } else {
           alert('Tratamiento asignado correctamente');
-          this.tratamientoSeleccionado = null;
-          // Recargar los tratamientos
-          this.cargarTratamientos();
+          this.medicamentoSeleccionado = null;
+          // Recargar los medicamentos
+          this.cargarMedicamentos();
         }
         this.loading = false;
       },

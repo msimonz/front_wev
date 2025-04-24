@@ -1,79 +1,85 @@
 <div class="container mt-4">
-    <h4>Detalles del Veterinario</h4>
-  
-    <!-- Si el veterinario existe, muestra sus datos -->
-    <ng-container *ngIf="veterinario">
-      <div class="card mb-4">
-        <div class="card-body">
-          <ul class="list-unstyled">
-            <li class="mb-2"><strong>Nombre:</strong> {{ veterinario.nombre }}</li>
-            <li class="mb-2"><strong>Teléfono:</strong> {{ veterinario.telefono }}</li>
-            <li class="mb-2"><strong>Email:</strong> {{ veterinario.email }}</li>
-            <li class="mb-2"><strong>Usuario:</strong> {{ veterinario.usuario }}</li>
-          </ul>
-        </div>
+  <h4>Detalles del Veterinario</h4>
+
+  <!-- Si el veterinario existe, muestra sus datos -->
+  <ng-container *ngIf="veterinario">
+    <div class="card mb-4">
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li class="mb-2"><strong>Nombre:</strong> {{ veterinario.nombre }}</li>
+          <li class="mb-2"><strong>Teléfono:</strong> {{ veterinario.telefono }}</li>
+          <li class="mb-2"><strong>Email:</strong> {{ veterinario.email }}</li>
+          <li class="mb-2"><strong>Usuario:</strong> {{ veterinario.usuario }}</li>
+        </ul>
       </div>
-  
-      <!-- Sección de Tratamientos -->
-      <div class="card">
-        <div class="card-header">
-          <h5 class="mb-0">Tratamientos del Veterinario</h5>
-        </div>
-        <div class="card-body">
-          <!-- Loading spinner -->
-          <div *ngIf="loading" class="text-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Cargando...</span>
-            </div>
-          </div>
+    </div>
 
-          <!-- Si hay error al cargar tratamientos -->
-          <div *ngIf="errorTratamientos" class="alert alert-danger">
-            {{ errorTratamientos }}
-          </div>
-  
-          <!-- Si no hay tratamientos -->
-          <div *ngIf="!loading && tratamientos.length === 0 && !errorTratamientos" class="alert alert-info">
-            Este veterinario no tiene tratamientos registrados.
-          </div>
-
-          <!-- Lista de tratamientos -->
-          <div *ngIf="!loading && tratamientos.length > 0" class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre</th>
-                  <th>ID Medicamento</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let tratamiento of tratamientos">
-                  <td>{{ tratamiento.id }}</td>
-                  <td>{{ tratamiento.nombre }}</td>
-                  <td>{{ tratamiento.idMedicamento }}</td>
-                </tr>
-              </tbody>
-            </table>
+    <!-- Sección de Tratamientos -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Tratamientos del Veterinario</h5>
+      </div>
+      <div class="card-body">
+        <!-- Loading spinner -->
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Cargando...</span>
           </div>
         </div>
-      </div>
 
-      <div class="mt-3">
-        <a routerLink="/cliente/tablaClientes" class="btn btn-primary">Ir a Tabla de Clientes</a>
-        <a routerLink="/mascota/tablaMascotas" class="btn btn-secondary ml-2">Ir a Tabla de Mascotas</a>
+        <!-- Si hay error al cargar tratamientos -->
+        <div *ngIf="errorTratamientos" class="alert alert-danger">
+          {{ errorTratamientos }}
+        </div>
+
+        <!-- Si no hay tratamientos -->
+        <div *ngIf="!loading && tratamientos.length === 0 && !errorTratamientos" class="alert alert-info">
+          Este veterinario no tiene tratamientos registrados.
+        </div>
+
+        <!-- Lista de tratamientos -->
+        <div *ngIf="!loading && tratamientos.length > 0" class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre Medicamento</th>
+                <th>Mascota</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tratamiento of tratamientos">
+                <td>{{ tratamiento.id }}</td>
+                <td>{{ tratamiento.nombre }}</td>
+                <td>{{ tratamiento.mascota.nombre }}</td>
+                <td>
+                  <ul class="list-unstyled">
+                    <li *ngFor="let medicamento of tratamiento.medicamentos">
+                      {{ medicamento.nombre }} (Stock: {{ medicamento.stock }})
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-  
-      <div class="mt-3">
-        <a routerLink="/veterinario/tablaVeterinarios" class="btn btn-secondary">Volver a la lista</a>
-      </div>
-    </ng-container>
-  
-    <!-- Si el veterinario NO existe, muestra un mensaje -->
-    <ng-container *ngIf="!veterinario">
-      <div class="alert alert-info">
-        <p>Seleccione un veterinario de la lista</p>
-      </div>
-    </ng-container>
-  </div>
-  
+    </div>
+
+    <div class="mt-3">
+      <a routerLink="/cliente/tablaClientes" class="btn btn-primary">Ir a Tabla de Clientes</a>
+      <a routerLink="/mascota/tablaMascotas" class="btn btn-secondary ml-2">Ir a Tabla de Mascotas</a>
+    </div>
+
+    <div class="mt-3">
+      <a routerLink="/veterinario/tablaVeterinarios" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+  </ng-container>
+
+  <!-- Si el veterinario NO existe, muestra un mensaje -->
+  <ng-container *ngIf="!veterinario">
+    <div class="alert alert-info">
+      <p>Seleccione un veterinario de la lista</p>
+    </div>
+  </ng-container>
+</div>

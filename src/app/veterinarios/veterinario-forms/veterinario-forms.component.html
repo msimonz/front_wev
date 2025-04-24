@@ -1,0 +1,104 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h2>Crear Nuevo Veterinario</h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+  
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+  
+        <form [formGroup]="veterinarioForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              formControlName="nombre"
+              [class.is-invalid]="veterinarioForm.get('nombre')?.invalid && veterinarioForm.get('nombre')?.touched"
+            >
+            <div *ngIf="veterinarioForm.get('nombre')?.invalid && veterinarioForm.get('nombre')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('nombre')?.errors?.['required']">El nombre es requerido</small>
+              <small *ngIf="veterinarioForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefono"
+              formControlName="telefono"
+              [class.is-invalid]="veterinarioForm.get('telefono')?.invalid && veterinarioForm.get('telefono')?.touched"
+            >
+            <div *ngIf="veterinarioForm.get('telefono')?.invalid && veterinarioForm.get('telefono')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('telefono')?.errors?.['required']">El teléfono es requerido</small>
+              <small *ngIf="veterinarioForm.get('telefono')?.errors?.['pattern']">El teléfono debe tener 10 dígitos</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              [class.is-invalid]="veterinarioForm.get('email')?.invalid && veterinarioForm.get('email')?.touched"
+            >
+            <div *ngIf="veterinarioForm.get('email')?.invalid && veterinarioForm.get('email')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('email')?.errors?.['required']">El email es requerido</small>
+              <small *ngIf="veterinarioForm.get('email')?.errors?.['email']">Ingrese un email válido</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="usuario" class="form-label">Usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="usuario"
+              formControlName="usuario"
+              [class.is-invalid]="veterinarioForm.get('usuario')?.invalid && veterinarioForm.get('usuario')?.touched"
+            >
+            <div *ngIf="veterinarioForm.get('usuario')?.invalid && veterinarioForm.get('usuario')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('usuario')?.errors?.['required']">El usuario es requerido</small>
+              <small *ngIf="veterinarioForm.get('usuario')?.errors?.['minlength']">El usuario debe tener al menos 4 caracteres</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="contrasena"
+              formControlName="contrasena"
+              [class.is-invalid]="veterinarioForm.get('contrasena')?.invalid && veterinarioForm.get('contrasena')?.touched"
+            >
+            <div *ngIf="veterinarioForm.get('contrasena')?.invalid && veterinarioForm.get('contrasena')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('contrasena')?.errors?.['required']">La contraseña es requerida</small>
+              <small *ngIf="veterinarioForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</small>
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" [disabled]="!veterinarioForm.valid || loading">
+              Crear Veterinario
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="cancelar()">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> 

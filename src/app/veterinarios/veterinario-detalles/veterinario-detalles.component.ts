@@ -46,16 +46,16 @@ export class VeterinarioDetallesComponent implements OnInit {
 
   loadTratamientos(id: number): void {
     this.loading = true;
-    this.veterinarioService.getTratamientos(id).subscribe({
-      next: (tratamientos) => {
-        this.tratamientos = tratamientos;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error al cargar los tratamientos:', error);
-        this.errorTratamientos = 'No se pudieron cargar los tratamientos del veterinario.';
-        this.loading = false;
-      }
+    this.veterinarioService.getTratamientosByVeterinario(id).subscribe({
+        next: (tratamientos: Tratamiento[]) => {
+            this.tratamientos = tratamientos;
+            this.loading = false;
+        },
+        error: (error) => {
+            console.error('Error al cargar los tratamientos:', error);
+            this.errorTratamientos = 'No se pudieron cargar los tratamientos del veterinario.';
+            this.loading = false;
+        }
     });
-  }
+}
 }
