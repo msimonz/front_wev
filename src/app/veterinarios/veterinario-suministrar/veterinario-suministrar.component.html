@@ -1,1 +1,96 @@
-<p>veterinario-suministrar works!</p>
+<div class="container mt-4">
+  <h4>Suministrar Tratamiento</h4>
+
+  <!-- Verificación de veterinario logueado -->
+  <div *ngIf="!veterinario" class="alert alert-warning">
+    Debe iniciar sesión como veterinario para acceder a esta funcionalidad.
+  </div>
+
+  <!-- Contenido principal -->
+  <div *ngIf="veterinario">
+    <!-- Loading spinner -->
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <!-- Contenido cuando no hay loading -->
+    <div *ngIf="!loading" class="row">
+      <!-- Información de la Mascota -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Mascota Seleccionada</h5>
+          </div>
+          <div class="card-body">
+            <div *ngIf="mascotaSeleccionada" class="mascota-info">
+              <img [src]="mascotaSeleccionada.imagen" [alt]="mascotaSeleccionada.nombre" 
+                   class="img-thumbnail mb-3" style="max-width: 200px;">
+              <ul class="list-unstyled">
+                <li><strong>Nombre:</strong> {{ mascotaSeleccionada.nombre }}</li>
+                <li><strong>Tipo:</strong> {{ mascotaSeleccionada.tipo }}</li>
+                <li><strong>Raza:</strong> {{ mascotaSeleccionada.raza }}</li>
+                <li><strong>Edad:</strong> {{ mascotaSeleccionada.edad }}</li>
+                <li><strong>Estado:</strong> {{ mascotaSeleccionada.estado }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Tratamientos -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Tratamientos Disponibles</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>ID Medicamento</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tratamiento of tratamientos">
+                    <td>{{ tratamiento.nombre }}</td>
+                    <td>{{ tratamiento.idMedicamento }}</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm"
+                              (click)="seleccionarTratamiento(tratamiento)"
+                              [class.active]="tratamientoSeleccionado?.id === tratamiento.id">
+                        Seleccionar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón para asignar tratamiento -->
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <button class="btn btn-success" 
+                (click)="asignarTratamiento()"
+                [disabled]="!tratamientoSeleccionado">
+          Asignar Tratamiento
+        </button>
+
+        <a class="btn btn-primary" [routerLink]="['/mascota/tablaMascotas']">Volver a Tabla</a>
+      </div>
+    </div>
+  </div>
+</div>

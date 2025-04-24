@@ -34,5 +34,14 @@ export class MascotaService {
 
   getMascotasByClienteId(clienteId: number): Observable<Mascota[]> {
     return this.http.get<Mascota[]>(`${this.apiUrl}/cliente/${clienteId}`);
-  }
+  }
+
+  asignarTratamiento(mascotaId: number, tratamientoId: number, veterinarioId: number): Observable<any> {
+    const asignacion = {
+      mascotaId,
+      tratamientoId,
+      veterinarioId
+    };
+    return this.http.post('http://localhost:8080/asignacion-tratamiento/asignar', asignacion);
+  }
 }

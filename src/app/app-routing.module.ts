@@ -36,7 +36,7 @@ const routes: Routes = [
 
   // Rutas de veterinarios
   { path: 'veterinario/detallesVeterinario/:id', component: VeterinarioDetallesComponent },
-  { path: 'veterinario/suministrar', component: VeterinarioSuministrarComponent },
+  { path: 'veterinario/suministrar/:id', component: VeterinarioSuministrarComponent },
 
   //Rutas de login
   { path: 'cliente/login', component: ClienteLoginComponent },

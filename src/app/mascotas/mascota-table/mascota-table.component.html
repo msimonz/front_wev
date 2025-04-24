@@ -53,7 +53,7 @@
                                 (click)="eliminarMascota(mascota)">
                             Eliminar
                         </button>
-                        <a class="btn btn-info btn-sm" [routerLink]="['/veterinario/suministrar']"> 
+                        <a class="btn btn-info btn-sm" [routerLink]="['/veterinario/suministrar', mascota.id]"> 
                             Suministrar tratamiento
                         </a>
                     </td>
