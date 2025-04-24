@@ -1,0 +1,157 @@
+/* Estilo general de la página */
+.container {
+    margin-top: 50px;
+  }
+  
+  h4 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilo para las alertas */
+  .alert {
+    font-size: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .alert-warning {
+    background-color: #fffae6;
+    color: #856404;
+    border: 1px solid #ffeeba;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  /* Spinner */
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.25rem;
+  }
+  
+  /* Tarjetas de información */
+  .card {
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 1.25rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-body .mascota-info img {
+    max-width: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .card-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .card-body ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Botones */
+  .btn-lg {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .btn-success:disabled {
+    background-color: #c6e0b4;
+    border-color: #c6e0b4;
+  }
+  
+  .btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+  }
+  
+  .btn-outline-primary.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+  }
+  
+  /* Tabla */
+  .table-striped {
+    background-color: #f9f9f9;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .table td {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Ajustes para las filas de la tabla */
+  table th, table td {
+    vertical-align: middle;
+  }
+  
+  .table td button {
+    border-radius: 1rem;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  table td button.active {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  /* Estilo para los botones flotantes */
+  .text-center {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Estilo para el contenedor de la mascota seleccionada */
+  .mascota-info {
+    text-align: center;
+  }
+  
