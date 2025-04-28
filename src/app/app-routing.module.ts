@@ -18,6 +18,7 @@ import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-sumi
 import { VeterinarioTableComponent } from './veterinarios/veterinario-table/veterinario-table.component';
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
+import { AdminLoginComponent } from './auth/admin-login/admin-login.component';  // Asegúrate de tener el componente correctamente importado
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -47,6 +48,7 @@ const routes: Routes = [
   //Rutas de login
   { path: 'cliente/login', component: ClienteLoginComponent },
   { path: 'veterinario/login', component: VeterinarioLoginComponent },
+  { path: 'admin/login', component: AdminLoginComponent },
 ];
 
 @NgModule({

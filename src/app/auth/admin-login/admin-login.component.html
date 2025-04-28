@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<div class="login-container">
+    <h2>Iniciar sesión como Admin</h2>
+    
+    <!-- Formulario de login -->
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input
+          type="text"
+          id="usuario"
+          class="form-control"
+          placeholder="Ingresa tu usuario"
+          [(ngModel)]="usuario"
+          name="usuario"
+          required
+          #usuarioInput="ngModel"
+        />
+        <div *ngIf="usuarioInput.invalid && usuarioInput.touched" class="error">
+          El usuario es obligatorio.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <input
+          type="password"
+          id="contrasena"
+          class="form-control"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="contrasena"
+          name="contrasena"
+          required
+          #contrasenaInput="ngModel"
+        />
+        <div *ngIf="contrasenaInput.invalid && contrasenaInput.touched" class="error">
+          La contraseña es obligatoria.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+        Iniciar sesión
+      </button>
+    </form>
+  
+    <div *ngIf="loginError" class="error-message">
+      Usuario o contraseña incorrectos, por favor inténtalo de nuevo.
+    </div>
+</div>
+
+<app-footer></app-footer>

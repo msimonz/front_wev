@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MascotaTableComponent } from './mascotas/mascota-table/mascota-table.component';
@@ -25,6 +25,7 @@ import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-sumi
 import { VeterinarioTableComponent } from './veterinarios/veterinario-table/veterinario-table.component';
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
+import { AdminLoginComponent } from './auth//admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/vete
     VeterinarioTableComponent,
     VeterinarioUpdateComponent,
     VeterinarioFormsComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/vete
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
