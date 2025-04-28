@@ -15,28 +15,12 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     this.DashboardService.getDashboardStats().subscribe(data => {
       this.stats = data;
-      console.log(this.stats);
+      console.log('Datos de tratamientos:', this.stats.tratamientos);
       this.createCharts();
     });
   }
   
   createCharts() {
-    // Gráfico de tratamientos por medicamento
-    const ctx = document.getElementById('tratamientosPorMedicamento') as HTMLCanvasElement;
-    const chart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico, puedes cambiarlo
-      data: {
-        labels: this.stats.tratamientosPorMedicamento.map((item: { medicamento: string, cantidad: number }) => item.medicamento),
-        datasets: [{
-          label: 'Tratamientos por Medicamento',
-          data: this.stats.tratamientosPorMedicamento.map((item: { medicamento: string, cantidad: number }) => item.cantidad),
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1
-        }]
-      }
-    });
-
     // Gráfico de veterinarios activos e inactivos
     const ctxVeterinarios = document.getElementById('ComparacionNumerodeVeterinariosvsClientes') as HTMLCanvasElement;
     const chartVeterinarios = new Chart(ctxVeterinarios, {
