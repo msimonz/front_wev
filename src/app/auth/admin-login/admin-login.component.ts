@@ -23,7 +23,7 @@ export class AdminLoginComponent {
     this.adminService.login(loginData).subscribe(
       (response) => {
         // Si el login es exitoso, redirige a otra página (por ejemplo, el dashboard de admin)
-        this.router.navigate(['/admin-dashboard']);
+        this.router.navigate(['admin/dashboard']);
       },
       (error) => {
         // Si el login falla, muestra el mensaje de error

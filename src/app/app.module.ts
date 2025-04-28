@@ -26,6 +26,7 @@ import { VeterinarioTableComponent } from './veterinarios/veterinario-table/vete
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
 import { AdminLoginComponent } from './auth//admin-login/admin-login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AdminLoginComponent } from './auth//admin-login/admin-login.component';
     VeterinarioUpdateComponent,
     VeterinarioFormsComponent,
     AdminLoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
