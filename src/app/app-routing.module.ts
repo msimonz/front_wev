@@ -19,7 +19,7 @@ import { VeterinarioTableComponent } from './veterinarios/veterinario-table/vete
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';  // Asegúrate de tener el componente correctamente importado
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminDashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -50,7 +50,7 @@ const routes: Routes = [
   { path: 'cliente/login', component: ClienteLoginComponent },
   { path: 'veterinario/login', component: VeterinarioLoginComponent },
   { path: 'admin/login', component: AdminLoginComponent },
-  { path: 'admin/dashboard', component: DashboardComponent }, 
+  { path: 'admin/dashboard', component: AdminDashboardComponent }, 
   { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
 ];
 
