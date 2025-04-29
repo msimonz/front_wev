@@ -1,0 +1,179 @@
+/* Establece el fondo azul para todo el cuerpo de la página */
+body {
+    background-color: #122732; /* Fondo azul oscuro */
+    color: #F8FAFC; /* Color de texto claro */
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    background-color: #F1F1F1; /* Fondo claro para el contenedor, para contrastar con el fondo azul */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Estilo de los títulos */
+  h4 {
+    font-size: 1.8em;
+    color: #122732;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Tarjetas (cards) */
+  .card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    background-color: #FBBC08;
+    color: #122732;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-body ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .card-body li {
+    font-size: 1.1em;
+    color: #122732;
+    margin-bottom: 10px;
+  }
+  
+  .card-body li strong {
+    font-weight: bold;
+  }
+  
+  /* Estilos para las tablas */
+  .table-responsive {
+    margin-top: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: #F9F9F9; /* Fondo gris para las filas impares */
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #FBBC08;
+    color: #122732;
+    font-weight: bold;
+  }
+  
+  .table td {
+    background-color: #fff;
+    color: #122732;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #E1E1E1;
+  }
+  
+  /* Estilo para los botones */
+  .btn {
+    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background-color: #FBBC08;
+    color: #122732;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #f57b11;
+  }
+  
+  .btn-secondary {
+    background-color: #122732;
+    color: #F8FAFC;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #1F2A37;
+  }
+  
+  /* Estilo del cargador */
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+  }
+  
+  .spinner-border span {
+    color: #FBBC08;
+  }
+  
+  .mt-4 {
+    margin-top: 20px;
+  }
+  
+  .mt-3 {
+    margin-top: 15px;
+  }
+  
+  /* Mensaje de selección de veterinario */
+  .alert-info {
+    background-color: #EAF2F8;
+    color: #122732;
+    border: 1px solid #B6D8E1;
+    font-size: 1.2em;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  /* Espaciado entre botones */
+  .ml-2 {
+    margin-left: 10px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .card-body li {
+      font-size: 1em;
+    }
+  
+    .btn {
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+    }
+  
+    .table th, .table td {
+      font-size: 0.9em;
+    }
+  
+    .card-body {
+      padding: 15px;
+    }
+  }
+  

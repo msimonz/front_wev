@@ -1,13 +1,21 @@
-<!-- dashboard.component.html -->
 <div class="dashboard">
+  <!-- Título principal de Dashboard y mensaje de bienvenida -->
+  <div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p class="welcome-message">Bienvenido a tu panel de control </p>
+  </div>
+
   <!-- Gráfico de Veterinarios Activos e Inactivos -->
   <div class="chart-container">
+    <h3>Comparación Veterinarios Activos vs Inactivos</h3> <!-- Título del gráfico a la izquierda -->
     <canvas id="ComparacionNumerodeVeterinariosvsClientes"></canvas>
   </div>
 
   <!-- Gráfico de Mascotas Activas e Inactivas -->
   <div class="chart-container">
     <canvas id="mascotasActivasInactivas"></canvas>
+    <h3>Comparación Mascotas Activas vs Inactivas</h3> <!-- Título del gráfico a la derecha -->
+    
   </div>
 
   <div class="statistics">
