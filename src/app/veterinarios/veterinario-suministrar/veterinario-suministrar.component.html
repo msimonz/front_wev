@@ -57,7 +57,6 @@
                   <tr>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Stock</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
@@ -65,7 +64,6 @@
                   <tr *ngFor="let medicamento of medicamentos">
                     <td>{{ medicamento.nombre }}</td>
                     <td>{{ medicamento.precioVenta | currency }}</td>
-                    <td>{{ medicamento.stock }}</td>
                     <td>
                       <button class="btn btn-primary btn-sm"
                               (click)="seleccionarMedicamento(medicamento)"

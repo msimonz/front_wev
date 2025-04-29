@@ -27,6 +27,7 @@
           <th>Teléfono</th>
           <th>Usuario</th>
           <th>Acciones</th>
+          <th>Estado</th>
         </tr>
       </thead>
       <tbody>
@@ -50,6 +51,11 @@
               Eliminar
             </button>
           </td>
+          <td>
+            <span [class]="veterinario.estado === 'Activo' ? 'badge bg-success' : 'badge bg-secondary'">
+                {{ veterinario.estado }}
+            </span>
+        </td>
         </tr>
       </tbody>
     </table>

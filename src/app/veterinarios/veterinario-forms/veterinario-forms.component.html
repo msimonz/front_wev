@@ -89,6 +89,22 @@
               <small *ngIf="veterinarioForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</small>
             </div>
           </div>
+
+          <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              class="form-control"
+              id="estado"
+              formControlName="estado"
+              [class.is-invalid]="veterinarioForm.get('estado')?.invalid && veterinarioForm.get('estado')?.touched"
+            >
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+            <div *ngIf="veterinarioForm.get('estado')?.invalid && veterinarioForm.get('estado')?.touched" class="text-danger">
+              <small *ngIf="veterinarioForm.get('estado')?.errors?.['required']">El estado es requerido</small>
+            </div>
+          </div>
   
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary" [disabled]="!veterinarioForm.valid || loading">

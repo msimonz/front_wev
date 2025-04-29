@@ -47,6 +47,14 @@
                      [(ngModel)]="veterinario.contrasena" required>
             </div>
 
+            <div class="mb-3">
+              <label for="estado" class="form-label">Estado</label>
+              <select class="form-select" id="estado" name="estado" [(ngModel)]="veterinario.estado" required>
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+              </select>
+            </div>
+
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary" [disabled]="!veterinarioForm.form.valid">
                 Actualizar

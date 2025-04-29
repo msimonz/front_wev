@@ -16,7 +16,8 @@ export class VeterinarioUpdateComponent implements OnInit {
     email: '',
     usuario: '',
     contrasena: '',
-    tratamientos: []
+    tratamientos: [],
+    estado: ''
   };
   loading: boolean = true;
   error: string = '';

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="dashboard">
   <!-- Título principal de Dashboard y mensaje de bienvenida -->
   <div class="dashboard-header">
@@ -7,7 +8,7 @@
 
   <!-- Gráfico de Veterinarios Activos e Inactivos -->
   <div class="chart-container">
-    <h3>Comparación Veterinarios Activos vs Inactivos</h3> <!-- Título del gráfico a la izquierda -->
+    <h3 align="right">Comparación Veterinarios Activos vs Inactivos</h3> <!-- Título del gráfico a la izquierda -->
     <canvas id="ComparacionNumerodeVeterinariosvsClientes"></canvas>
   </div>
 
@@ -54,21 +55,6 @@
         </tr>
       </tbody>
     </table>
-
-    <h3>Tratamientos por Medicamento</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Medicamento</th>
-          <th>Cantidad</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of stats.tratamientosPorMedicamento">
-          <td>{{ item.medicamento }}</td>
-          <td>{{ item.cantidad }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
+<app-footer></app-footer>

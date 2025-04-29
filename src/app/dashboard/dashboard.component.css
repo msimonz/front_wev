@@ -4,131 +4,144 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  background-color: #122732; /* Fondo oscuro para el dashboard */
+  gap: 40px;
+  padding: 30px;
+  background: #002640;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
+/* Header del dashboard */
 .dashboard-header {
-  text-align: center; /* Centrar los títulos */
+  text-align: center;
   margin-bottom: 30px;
+  font-size: larger;
+  background-color: #122732;
+  padding: 60px;
+  margin-top: 90px;
+  width: 1800px;
+  margin-left: -30px;
 }
 
 .dashboard-header h1 {
-  font-size: 2.5em;
-  color: #FBBC08; /* Título principal en color amarillo */
+  font-size: 3em;
+  color: #FFCC00;
   font-weight: bold;
   margin-bottom: 10px;
+  text-shadow: 2px 2px #000;
 }
 
 .dashboard-header .welcome-message {
-  font-size: 1.2em;
-  color: #F8FAFC; /* Texto claro para el mensaje de bienvenida */
+  font-size: 3.0em;
+  color: #F8FAFC;
+  opacity: 0.85;
 }
 
-/* Gráficos y contenido restante */
+/* Contenedor de los gráficos */
 .chart-container {
   display: flex;
-  justify-content: space-between; /* Alinea los títulos de los gráficos a los lados */
-  align-items: center; /* Centra verticalmente los elementos dentro de la fila */
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 100px;
 }
 
 .chart-container h3 {
-  font-size: 1.6em;
-  color: #FBBC08; /* Color amarillo para los títulos */
+  font-size: 3.5em;
+  color: #FFCC00;
   font-weight: bold;
   margin: 0;
-  width: 45%; /* Para asegurar que los títulos no se apilen */
-}
-
-.chart-container h3:first-child {
-  text-align: left; /* El primer título se alinea a la izquierda */
-}
-
-.chart-container h3:last-child {
-  text-align: right; /* El segundo título se alinea a la derecha */
+  flex: 1 1 45%;
+  text-shadow: 1px 1px #000;
 }
 
 canvas {
-  width: 48% !important; /* Los gráficos ocuparán el 48% del ancho del contenedor */
-  height: 300px !important; /* Ajustamos la altura para que los gráficos sean más pequeños */
-  border-radius: 10px;
-  background-color: #fff; /* Fondo blanco para el gráfico */
-  border: 2px solid #FBBC08; /* Borde amarillo alrededor de los gráficos */
+  flex: 1 1 45%;
+  max-width: 750px;
+  height: 400px !important;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #FFCC00;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Estilo de las estadísticas */
+/* Contenedor de estadísticas */
 .statistics {
-  background-color: #1F2A37; /* Fondo más oscuro para las estadísticas */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(31, 42, 55, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .statistics h3 {
-  font-size: 1.6em;
-  color: #FBBC08; /* Títulos de estadísticas en color amarillo */
-  margin-bottom: 15px;
+  font-size: 3.0em;
+  color: #FFCC00;
+  margin-bottom: 20px;
   font-weight: bold;
+  text-shadow: 1px 1px #000;
 }
 
+/* Estilo de tablas */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 th, td {
-  padding: 12px;
+  padding: 14px 18px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
 }
 
 th {
-  background-color: #FBBC08; /* Color de fondo de los encabezados */
-  color: #122732; /* Color de texto oscuro */
+  background-color: #FFCC00;
+  color: #122732;
   font-weight: bold;
+  font-size: 1.1em;
+  text-transform: uppercase;
 }
 
 td {
-  background-color: #F1F1F1; /* Fondo claro para las celdas */
+  background-color: #F9FAFB;
   font-size: 1em;
+  color: #122732;
 }
 
 tr:hover td {
-  background-color: #E1E1E1; /* Color de fondo al pasar el mouse */
+  background-color: #E5E7EB;
 }
 
+/* Quitar el borde inferior al último elemento */
 table tbody tr:last-child td {
   border-bottom: none;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .dashboard {
-    padding: 10px;
+    padding: 15px;
   }
 
   .chart-container {
-    flex-direction: column; /* En pantallas pequeñas, apilar los gráficos y títulos */
-    align-items: center;
+    flex-direction: column;
   }
 
   .chart-container h3 {
-    width: 100%; /* Los títulos ocuparán todo el ancho */
-    text-align: center;
+    flex: 1 1 100%;
+    margin-bottom: 10px;
   }
 
   canvas {
-    width: 90% !important; /* Los gráficos ocuparán más espacio en pantallas pequeñas */
+    width: 90% !important;
     height: 250px !important;
   }
 
   .statistics h3 {
-    font-size: 1.4em;
+    font-size: 1.6em;
   }
 
-  table th, table td {
-    font-size: 0.9em;
+  th, td {
+    font-size: 0.95em;
   }
 }

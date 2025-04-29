@@ -26,6 +26,7 @@ export class VeterinarioFormsComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       usuario: ['', [Validators.required, Validators.minLength(4)]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
+      estado: ['', [Validators.required]]
     });
   }
 

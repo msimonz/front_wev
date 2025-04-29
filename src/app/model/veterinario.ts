@@ -9,5 +9,6 @@ export interface Veterinario {
     usuario: string;
     contrasena: string;
     tratamientos: Tratamiento[];
+    estado: string
   }
   
