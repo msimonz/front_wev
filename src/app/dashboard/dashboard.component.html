@@ -5,7 +5,11 @@
     <h1>Dashboard</h1>
     <p class="welcome-message">Bienvenido a tu panel de control </p>
   </div>
-
+  <div class="mt-3">
+    <a routerLink="/cliente/tablaClientes" class="btn btn-primary">Ir a Tabla de Clientes</a>
+    <a routerLink="/mascota/tablaMascotas" class="btn btn-secondary ml-2">Ir a Tabla de Mascotas</a>
+    <a routerLink="/veterinario/tablaVeterinarios" class="btn btn-secondary"> Ir a tabla Veterinarios</a>
+  </div>
   <!-- Gráfico de Veterinarios Activos e Inactivos -->
   <div class="chart-container">
     <h3 align="right">Comparación Veterinarios Activos vs Inactivos</h3> <!-- Título del gráfico a la izquierda -->
@@ -56,5 +60,9 @@
       </tbody>
     </table>
   </div>
+  
 </div>
+
+
+
 <app-footer></app-footer>
