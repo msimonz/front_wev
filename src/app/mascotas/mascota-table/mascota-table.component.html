@@ -23,6 +23,7 @@
                     <th>Estado</th>
                     <th>Imagen</th>
                     <th>Acciones</th>
+                    <th>Suministrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +55,9 @@
                                 (click)="eliminarMascota(mascota)">
                             Eliminar
                         </button>
-                        <a class="btn btn-info btn-sm" [routerLink]="['/veterinario/suministrar', mascota.id]"> 
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" *ngIf="esVeterinarioActivo && mascota.estado === 'Activo'" [routerLink]="['/veterinario/suministrar', mascota.id]"> 
                             Suministrar tratamiento
                         </a>
                     </td>

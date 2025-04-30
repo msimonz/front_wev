@@ -13,4 +13,8 @@ export class AdminService {
   login(loginData: { usuario: string; contrasena: string }): Observable<any> {
     return this.http.post(this.apiUrl, loginData);
   }
+
+  esAdmin(): boolean {
+    return localStorage.getItem('esAdmin') === 'true';
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Mascota } from '../../model/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
+import { VeterinarioService } from 'src/app/service/veterinario.service';
 
 @Component({
   selector: 'app-mascota-table',
@@ -11,13 +12,18 @@ export class MascotaTableComponent implements OnInit {
   mascotaSeleccionada!: Mascota;
   mascotaParaActualizar!: Mascota;
   mascotas: Mascota[] = [];
+  esVeterinarioActivo: boolean = false;
 
   @Output() mascotaEliminada = new EventEmitter<Mascota>();
 
-  constructor(private mascotaService: MascotaService) {}
+  constructor(
+    private mascotaService: MascotaService,
+    private veterinarioService: VeterinarioService
+  ) {}
 
   ngOnInit() {
     this.cargarMascotas();
+    this.esVeterinarioActivo = this.veterinarioService.isVeterinarioLogueado() && this.veterinarioService.getVeterinarioLogueado()?.estado == 'Activo';
   }
 
   cargarMascotas() {

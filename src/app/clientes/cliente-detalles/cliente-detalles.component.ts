@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/model/cliente';
 import { Mascota } from 'src/app/model/mascota';
+import { AdminService } from 'src/app/service/admin.service';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { MascotaService } from 'src/app/service/mascota.service';
 
@@ -14,15 +15,22 @@ export class ClienteDetallesComponent implements OnInit {
   cliente!: Cliente;
   mascotas: Mascota[] = [];
   errorMascotas: string = '';
+  esAdministrador = false;
+  mostrarVolverLista = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private clienteService: ClienteService,
-    private mascotaService: MascotaService
+    private mascotaService: MascotaService,
+    private adminService: AdminService
   ) { }
 
   ngOnInit(): void {
+    const rutaOrigen = this.route.snapshot.queryParams['rutaOrigen'];
+    if (rutaOrigen === 'tabla-clientes') {
+      this.mostrarVolverLista = true;
+    }
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
       this.loadClienteDetails(id);

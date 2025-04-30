@@ -28,6 +28,9 @@ export class VeterinarioSuministrarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.veterinarioService.isVeterinarioLogueado() || this.veterinarioService.getVeterinarioLogueado()?.estado !== 'Activo') {
+      this.error = 'No tienes permisos para acceder a esta página';
+    }
     // Verificar si hay un veterinario logueado
     this.veterinario = this.veterinarioService.getVeterinarioLogueado();
     if (!this.veterinario) {
