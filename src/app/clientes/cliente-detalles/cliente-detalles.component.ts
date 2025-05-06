@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/model/cliente';
 import { Mascota } from 'src/app/model/mascota';
-import { AdminService } from 'src/app/service/admin.service';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { MascotaService } from 'src/app/service/mascota.service';
 
@@ -15,26 +14,34 @@ export class ClienteDetallesComponent implements OnInit {
   cliente!: Cliente;
   mascotas: Mascota[] = [];
   errorMascotas: string = '';
-  esAdministrador = false;
   mostrarVolverLista = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private clienteService: ClienteService,
-    private mascotaService: MascotaService,
-    private adminService: AdminService
+    private mascotaService: MascotaService
   ) { }
 
   ngOnInit(): void {
-    const rutaOrigen = this.route.snapshot.queryParams['rutaOrigen'];
-    if (rutaOrigen === 'tabla-clientes') {
+    // Verificar si viene del login
+    const clienteGuardado = localStorage.getItem('cliente');
+    if (clienteGuardado) {
+      const cliente = JSON.parse(clienteGuardado);
+      // Si el ID del cliente guardado coincide con el ID de la ruta, viene del login
+      this.route.paramMap.subscribe(params => {
+        const id = Number(params.get('id'));
+        this.mostrarVolverLista = id !== cliente.id;
+        this.loadClienteDetails(id);
+      });
+    } else {
+      // Si no hay cliente guardado, viene de la tabla
       this.mostrarVolverLista = true;
+      this.route.paramMap.subscribe(params => {
+        const id = Number(params.get('id'));
+        this.loadClienteDetails(id);
+      });
     }
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      this.loadClienteDetails(id);
-    });
   }
 
   loadClienteDetails(id: number): void {
