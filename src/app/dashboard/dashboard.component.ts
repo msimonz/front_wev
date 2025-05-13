@@ -36,10 +36,10 @@ export class AdminDashboardComponent implements OnInit {
     new Chart(ctxTratamientos, {
       type: 'bar',
       data: {
-        labels: this.stats.tratamientosPorTipo.map((t: any) => t.medicamento),
+        labels: ['Total Tratamientos'],
         datasets: [{
           label: 'Cantidad de Tratamientos',
-          data: this.stats.tratamientosPorTipo.map((t: any) => t.cantidad),
+          data: [this.stats.totalTratamientosUltimoMes],
           backgroundColor: 'rgba(255, 159, 64, 0.2)',
           borderColor: 'rgba(255, 159, 64, 1)',
           borderWidth: 1
@@ -50,7 +50,7 @@ export class AdminDashboardComponent implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Tratamientos por Tipo de Medicamento',
+            text: 'Tratamientos del Último Mes',
             color: '#FFCC00',
             font: {
               size: 16
@@ -61,7 +61,8 @@ export class AdminDashboardComponent implements OnInit {
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              fontColor: '#F8FAFC'
+              fontColor: '#F8FAFC',
+              max: 10
             }
           }],
           xAxes: [{
@@ -72,6 +73,7 @@ export class AdminDashboardComponent implements OnInit {
         }
       }
     });
+    
 
     // Gráfico de estado de veterinarios
     const ctxVeterinarios = document.getElementById('estadoVeterinarios') as HTMLCanvasElement;
