@@ -8,88 +8,147 @@ import { Chart } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  stats: any = {};
+  stats: any = {
+    totalTratamientosUltimoMes: 0,
+    tratamientosPorTipo: [],
+    veterinariosActivos: 0,
+    veterinariosInactivos: 0,
+    totalMascotas: 0,
+    mascotasActivas: 0,
+    ventasTotales: 0,
+    gananciasTotales: 0,
+    top3Tratamientos: []
+  };
 
-  constructor(private DashboardService:DashboardService) {}
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.DashboardService.getDashboardStats().subscribe(data => {
+    this.dashboardService.getDashboardStats().subscribe(data => {
+      console.log('Datos recibidos del backend:', data);
       this.stats = data;
-      console.log('Datos de tratamientos:', this.stats.tratamientos);
       this.createCharts();
     });
   }
   
   createCharts() {
-    // Gráfico de veterinarios activos e inactivos
-    const ctxVeterinarios = document.getElementById('ComparacionNumerodeVeterinariosvsClientes') as HTMLCanvasElement;
-    const chartVeterinarios = new Chart(ctxVeterinarios, {
+    // Gráfico de tratamientos por tipo
+    const ctxTratamientos = document.getElementById('tratamientosPorTipo') as HTMLCanvasElement;
+    new Chart(ctxTratamientos, {
       type: 'bar',
       data: {
-        labels: ['Veterinarios Activos', 'Clientes Activos'],
+        labels: this.stats.tratamientosPorTipo.map((t: any) => t.medicamento),
         datasets: [{
-          label: 'Veterinarios vs Clientes',
-          data: [this.stats.veterinariosActivos, this.stats.clientesActivos], // Datos que provienen del backend
-          backgroundColor: 'rgba(153, 102, 255, 0.2)',
-          borderColor: 'rgba(153, 102, 255, 1)',
+          label: 'Cantidad de Tratamientos',
+          data: this.stats.tratamientosPorTipo.map((t: any) => t.cantidad),
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
           borderWidth: 1
         }]
       },
       options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Tratamientos por Tipo de Medicamento',
+            color: '#FFCC00',
+            font: {
+              size: 16
+            }
+          }
+        },
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              fontColor: '#F8FAFC'
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: '#F8FAFC'
             }
           }]
         }
       }
     });
-    // Gráfico de mascotas activas e inactivas
-    const ctxMascotas = document.getElementById('mascotasActivasInactivas') as HTMLCanvasElement;
-    const chartMascotas = new Chart(ctxMascotas, {
-      type: 'pie', // Cambia el tipo a 'pie' para hacer un gráfico de sectores
+
+    // Gráfico de estado de veterinarios
+    const ctxVeterinarios = document.getElementById('estadoVeterinarios') as HTMLCanvasElement;
+    new Chart(ctxVeterinarios, {
+      type: 'pie',
       data: {
-        labels: ['Mascotas Activas', 'Mascotas Inactivas'], // Etiquetas
+        labels: ['Activos', 'Inactivos'],
         datasets: [{
-          label: 'Mascotas',
-          data: [this.stats.mascotasActivas, this.stats.mascotasInactivas], // Datos
-          backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)'], // Colores de los sectores
-          borderColor: ['rgba(255, 159, 64, 1)', 'rgba(75, 192, 192, 1)'], // Bordes de los sectores
+          data: [this.stats.veterinariosActivos, this.stats.veterinariosInactivos],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 99, 132, 1)'
+          ],
           borderWidth: 1
         }]
       },
       options: {
+        responsive: true,
         plugins: {
-          legend: {
-            display: true, // Mostrar leyenda
-            position: 'top' // Posición de la leyenda
-          },
-          tooltip: {
-            callbacks: {
-              // Personalizar la vista del tooltip
-              label: function(tooltipItem: { dataset: { label: string; }; raw: string; }) {
-                return tooltipItem.dataset.label + ': ' + tooltipItem.raw; // Mostrar los datos al pasar el mouse
-              }
+          title: {
+            display: true,
+            text: 'Estado de Veterinarios',
+            color: '#FFCC00',
+            font: {
+              size: 16
             }
           },
-          // Plugin de labels para poner los rótulos directamente en el gráfico
-          datalabels: {
-            display: true, // Mostrar los rótulos
-            color: '#fff', // Color del texto de los rótulos
-            font: {
-              weight: 'bold', // Establecer el peso de la fuente
-              size: 14 // Tamaño de la fuente
-            },
-            formatter: function(value: any) {
-              return value; // Muestra el valor de cada sección
+          legend: {
+            labels: {
+              color: '#F8FAFC'
             }
           }
         }
       }
     });
 
-
-
+    // Gráfico de estado de mascotas
+    const ctxMascotas = document.getElementById('estadoMascotas') as HTMLCanvasElement;
+    new Chart(ctxMascotas, {
+      type: 'doughnut',
+      data: {
+        labels: ['Mascotas Activas', 'Mascotas Inactivas'],
+        datasets: [{
+          data: [this.stats.mascotasActivas, this.stats.totalMascotas - this.stats.mascotasActivas],
+          backgroundColor: [
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderColor: [
+            'rgba(153, 102, 255, 1)',
+            'rgba(201, 203, 207, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Estado de Mascotas',
+            color: '#FFCC00',
+            font: {
+              size: 16
+            }
+          },
+          legend: {
+            labels: {
+              color: '#F8FAFC'
+            }
+          }
+        }
+      }
+    });
   }
 }

@@ -3,66 +3,99 @@
   <!-- Título principal de Dashboard y mensaje de bienvenida -->
   <div class="dashboard-header">
     <h1>Dashboard</h1>
-    <p class="welcome-message">Bienvenido a tu panel de control </p>
-  </div>
-  <div class="mt-3">
-    <a routerLink="/cliente/tablaClientes" class="btn btn-primary">Ir a Tabla de Clientes</a>
-    <a routerLink="/mascota/tablaMascotas" class="btn btn-secondary ml-2">Ir a Tabla de Mascotas</a>
-    <a routerLink="/veterinario/tablaVeterinarios" class="btn btn-secondary"> Ir a tabla Veterinarios</a>
-  </div>
-  <!-- Gráfico de Veterinarios Activos e Inactivos -->
-  <div class="chart-container">
-    <h3 align="right">Comparación Veterinarios Activos vs Inactivos</h3> <!-- Título del gráfico a la izquierda -->
-    <canvas id="ComparacionNumerodeVeterinariosvsClientes"></canvas>
+    <p class="welcome-message">Bienvenido a tu panel de control</p>
   </div>
 
-  <!-- Gráfico de Mascotas Activas e Inactivas -->
-  <div class="chart-container">
-    <canvas id="mascotasActivasInactivas"></canvas>
-    <h3>Comparación Mascotas Activas vs Inactivas</h3> <!-- Título del gráfico a la derecha -->
-    
+  <!-- Grid de KPIs -->
+  <div class="kpi-grid">
+    <!-- Tratamientos -->
+    <div class="kpi-card">
+      <h3>Tratamientos del Último Mes</h3>
+      <div class="kpi-value">{{ stats.totalTratamientosUltimoMes }}</div>
+    </div>
+
+    <!-- Tratamientos por Tipo -->
+    <div class="kpi-card">
+      <h3>Tratamientos por Tipo</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicamento</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tratamiento of stats.tratamientosPorTipo">
+              <td>{{ tratamiento.medicamento }}</td>
+              <td>{{ tratamiento.cantidad }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Veterinarios -->
+    <div class="kpi-card">
+      <h3>Estado de Veterinarios</h3>
+      <div class="kpi-value">
+        <div>Activos: {{ stats.veterinariosActivos }}</div>
+        <div>Inactivos: {{ stats.veterinariosInactivos }}</div>
+      </div>
+    </div>
+
+    <!-- Mascotas -->
+    <div class="kpi-card">
+      <h3>Estado de Mascotas</h3>
+      <div class="kpi-value">
+        <div>Total: {{ stats.totalMascotas }}</div>
+        <div>En Tratamiento: {{ stats.mascotasActivas }}</div>
+      </div>
+    </div>
+
+    <!-- Ventas y Ganancias -->
+    <div class="kpi-card">
+      <h3>Ventas y Ganancias</h3>
+      <div class="kpi-value">
+        <div>Ventas Totales: ${{ stats.ventasTotales }}</div>
+        <div>Ganancias Totales: ${{ stats.gananciasTotales }}</div>
+      </div>
+    </div>
+
+    <!-- Top 3 Tratamientos -->
+    <div class="kpi-card">
+      <h3>Top 3 Tratamientos</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Tratamiento</th>
+              <th>Unidades</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tratamiento of stats.top3Tratamientos">
+              <td>{{ tratamiento.nombre }}</td>
+              <td>{{ tratamiento.unidades }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-  <div class="statistics">
-    <h3>Total de Tratamientos Administrados: {{ stats.totalTratamientos }}</h3>
-
-    <h3>Veterinarios Activos</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Veterinarios Activos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ stats.veterinariosActivos }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Estado de las Mascotas</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Estado</th>
-          <th>Cantidad</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Activas</td>
-          <td>{{ stats.mascotasActivas }}</td>
-        </tr>
-        <tr>
-          <td>Inactivas</td>
-          <td>{{ stats.mascotasInactivas }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Gráficos -->
+  <div class="charts-container">
+    <div class="chart-container">
+      <canvas id="tratamientosPorTipo"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="estadoVeterinarios"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="estadoMascotas"></canvas>
+    </div>
   </div>
-  
 </div>
-
-
 
 <app-footer></app-footer>
