@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VeterinarioService } from 'src/app/service/veterinario.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,30 +8,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./veterinario-login.component.css']
 })
 export class VeterinarioLoginComponent {
-  usuario: string = '';
-  contrasena: string = '';
+  username: string = '';
+  password: string = '';
   loginError: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private veterinarioService: VeterinarioService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit() {
-    this.veterinarioService.authenticate(this.usuario, this.contrasena)
-      .subscribe(
-        (response: any) => {
-          console.log("Login exitoso:", response);
-          alert("Login exitoso");
-  
-          localStorage.setItem('veterinario', JSON.stringify(response));
-          localStorage.setItem('veterinarioId', response.id);
+    this.loginError = false;
+    this.errorMessage = '';
 
-          this.router.navigate(['veterinario/detallesVeterinario', response.id]);
-        },
-        error => {
-          console.error('Error de login:', error);
-          console.error('Detalles del error:', error.error); // Agrega esta línea para ver más detalles
-          this.loginError = true;
-          alert("Usuario o contraseña incorrectos");
-        }
-      );
+    this.authService.login(this.username, this.password, 'VETERINARIO').subscribe({
+      next: () => {
+        this.authService.getUserDetails('VETERINARIO').subscribe({
+          next: (user) => {
+            if (user && user.id) {
+              this.router.navigate(['/veterinario/detallesVeterinario', user.id]);
+            } else {
+              this.loginError = true;
+              this.errorMessage = 'No se pudo obtener el ID del veterinario.';
+            }
+          },
+          error: (error) => {
+            this.loginError = true;
+            this.errorMessage = 'Error al obtener los detalles del veterinario.';
+            console.error('Error al obtener detalles:', error);
+          }
+        });
+      },
+      error: (error) => {
+        this.loginError = true;
+        this.errorMessage = 'Credenciales incorrectas';
+        console.error('Error de login:', error);
+      }
+    });
   }
 }

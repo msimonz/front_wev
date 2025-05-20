@@ -1,8 +1,7 @@
 // cliente-login.component.ts
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { ClienteService } from 'src/app/service/cliente.service';
-
 
 @Component({
   selector: 'app-cliente-login',
@@ -10,32 +9,43 @@ import { ClienteService } from 'src/app/service/cliente.service';
   styleUrls: ['./cliente-login.component.css']
 })
 export class ClienteLoginComponent {
-  usuario: string = '';
-  contrasena: string = '';
+  username: string = '';
+  password: string = '';
   loginError: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private clienteService: ClienteService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  // cliente-login.component.ts
-onSubmit() {
-  this.clienteService.authenticate(this.usuario, this.contrasena)
-    .subscribe(
-      (response: any) => {
-        console.log("Login exitoso:", response);
-        alert("Login exitoso");
+  onSubmit() {
+    this.loginError = false;
+    this.errorMessage = '';
 
-        localStorage.setItem('cliente', JSON.stringify(response)); // Guarda toda la info del cliente
-        localStorage.setItem('clienteId', response.id); 
-
-        
-        this.router.navigate(['cliente/detallesCliente', response.id]);
+    this.authService.login(this.username, this.password, 'CLIENTE').subscribe({
+      next: () => {
+        this.authService.getUserDetails('CLIENTE').subscribe({
+          next: (user) => {
+            if (user && user.id) {
+              this.router.navigate(['/cliente/detallesCliente', user.id]);
+            } else {
+              this.loginError = true;
+              this.errorMessage = 'No se pudo obtener el ID del cliente.';
+            }
+          },
+          error: (error) => {
+            this.loginError = true;
+            this.errorMessage = 'Error al obtener los detalles del cliente.';
+            console.error('Error al obtener detalles:', error);
+          }
+        });
       },
-      error => {
+      error: (error) => {
+        this.loginError = true;
+        this.errorMessage = 'Credenciales incorrectas';
         console.error('Error de login:', error);
-        this.loginError = true; 
-        alert("Usuario o contraseña incorrectos");
       }
-    );
-}
-
+    });
+  }
 }

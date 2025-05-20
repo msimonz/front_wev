@@ -48,6 +48,24 @@ export class ClienteDetallesComponent implements OnInit {
     this.clienteService.findById(id).subscribe({
       next: (cliente) => {
         this.cliente = cliente;
+        // Si el usuario autenticado es el cliente, usa getMisMascotas
+        const clienteGuardado = localStorage.getItem('cliente');
+        if (clienteGuardado) {
+          const clienteAuth = JSON.parse(clienteGuardado);
+          if (clienteAuth.id === id) {
+            this.mascotaService.getMisMascotas().subscribe({
+              next: (mascotas) => {
+                this.mascotas = mascotas;
+              },
+              error: (error) => {
+                console.error('Error al cargar mascotas:', error);
+                this.errorMascotas = 'Error al cargar las mascotas del cliente';
+              }
+            });
+            return;
+          }
+        }
+        // Si no, usa el método por id
         this.loadMascotasCliente(id);
       },
       error: (error) => {

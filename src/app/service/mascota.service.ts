@@ -44,4 +44,8 @@ export class MascotaService {
     };
     return this.http.post('http://localhost:8080/asignacion-tratamiento/asignar', asignacion);
   }
+
+  getMisMascotas(): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`http://localhost:8080/clientes/mis-mascotas`);
+  }
 }

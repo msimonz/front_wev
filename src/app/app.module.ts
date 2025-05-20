@@ -9,24 +9,21 @@ import { MascotaFormComponent } from './mascotas/mascota-form/mascota-form.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MascotaUpdateComponent } from './mascotas/mascota-update/mascota-update.component';
 import { HomeComponent } from './home/home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { SobreNosotrosComponent } from './home/sobre-nosotros/sobre-nosotros.component';
 import { ServiciosComponent } from './home/servicios/servicios.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.component';
 import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
-import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
-import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
 import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
 import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-suministrar/veterinario-suministrar.component';
 import { VeterinarioTableComponent } from './veterinarios/veterinario-table/veterinario-table.component';
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
-import { AdminLoginComponent } from './auth//admin-login/admin-login.component';
 import { AdminDashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -36,23 +33,18 @@ import { AdminDashboardComponent } from 'src/app/dashboard/dashboard.component';
     MascotaFormComponent,
     MascotaUpdateComponent,
     HomeComponent,
-    HeaderComponent,
-    FooterComponent,
     SobreNosotrosComponent,
     ServiciosComponent,
     ClienteTableComponent,
     ClienteDetallesComponent,
     ClienteFormComponent,
     ClienteUpdateComponent,
-    ClienteLoginComponent,
-    VeterinarioLoginComponent,
     VeterinarioDetallesComponent,
     VeterinarioSuministrarComponent,
     VeterinarioTableComponent,
     VeterinarioUpdateComponent,
     VeterinarioFormsComponent,
-    AdminLoginComponent,
-    AdminDashboardComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +52,12 @@ import { AdminDashboardComponent } from 'src/app/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    AuthModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

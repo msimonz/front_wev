@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminService } from 'src/app/service/admin.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,28 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent {
-  usuario: string = '';
-  contrasena: string = '';
+  username: string = '';
+  password: string = '';
   loginError: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit() {
-    const loginData = {
-      usuario: this.usuario,
-      contrasena: this.contrasena
-    };
+    this.loginError = false;
+    this.errorMessage = '';
 
-    this.adminService.login(loginData).subscribe(
-      (response) => {
-        // Si el login es exitoso, redirige a otra página (por ejemplo, el dashboard de admin)
-        this.router.navigate(['admin/dashboard']);
+    this.authService.login(this.username, this.password, 'ADMIN').subscribe({
+      next: (res) => {
+        this.router.navigate(['/admin/dashboard']);
       },
-      (error) => {
-        // Si el login falla, muestra el mensaje de error
+      error: (error) => {
         this.loginError = true;
-        console.log("Error de login:", error);
+        this.errorMessage = 'Credenciales incorrectas';
+        console.error('Error de login:', error);
       }
-    );
+    });
   }
 }
