@@ -1,8 +1,13 @@
 <div class="container mt-4">
   <h4>Detalles de la Mascota</h4>
 
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
   <!-- Si la mascota existe, muestra sus datos -->
-  <ng-container *ngIf="mascota">
+  <ng-container *ngIf="mascota && !error">
       <div class="card">
           <ul>
               <li><strong>Nombre:</strong> {{ mascota.nombre }}</li>
@@ -11,9 +16,9 @@
               <li><strong>Raza:</strong> {{ mascota.raza }}</li>
               <li><strong>Sexo:</strong> {{ mascota.sexo }}</li>
               <li><strong>Estado:</strong> {{ mascota.estado }}</li>
-              <li *ngIf="mascota.imagen">
+              <li *ngIf="mascota.imagenUrl">
                   <strong>Imagen:</strong>
-                  <img [src]="mascota.imagen" alt="{{ mascota.nombre }}" class="img-fluid" />
+                  <img [src]="mascota.imagenUrl" alt="{{ mascota.nombre }}" class="img-fluid" />
               </li>
           </ul>
       </div>
@@ -22,8 +27,8 @@
       </div>
   </ng-container>
 
-  <!-- Si la mascota NO existe, muestra un mensaje -->
-  <ng-container *ngIf="!mascota">
+  <!-- Si la mascota NO existe y no hay error, muestra un mensaje -->
+  <ng-container *ngIf="!mascota && !error">
       <p>Seleccione una mascota de la tabla</p>
   </ng-container>
 </div>

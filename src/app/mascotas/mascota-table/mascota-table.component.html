@@ -43,8 +43,8 @@
                         </span>
                     </td>
                     <td>
-                        <img *ngIf="mascota.imagen" [src]="mascota.imagen" [alt]="mascota.nombre" class="img-thumbnail" style="max-width: 50px;">
-                        <span *ngIf="!mascota.imagen">Imagen no disponible</span>
+                        <img *ngIf="mascota.imagenUrl" [src]="mascota.imagenUrl" [alt]="mascota.nombre" class="img-thumbnail" style="max-width: 50px;">
+                        <span *ngIf="!mascota.imagenUrl">Imagen no disponible</span>
                     </td>
                     <td>
                         <a class="btn btn-warning btn-sm me-2" 

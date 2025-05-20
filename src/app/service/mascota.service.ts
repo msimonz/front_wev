@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Mascota } from '../model/mascota';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class MascotaService {
 
   private apiUrl = "http://localhost:8080/mascotas";
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   findAll(): Observable<Mascota[]> {
     return this.http.get<Mascota[]>(`${this.apiUrl}/all`);

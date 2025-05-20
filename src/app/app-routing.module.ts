@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'servicios', component: ServiciosComponent },
-  
+  { path: 'auth/login', component: ClienteLoginComponent },
   // Rutas de mascotas
   { path: 'mascota/tablaMascotas', component: MascotaTableComponent },
   { path: 'mascota/detallesMascota/:id', component: MascotaDetallesComponent },

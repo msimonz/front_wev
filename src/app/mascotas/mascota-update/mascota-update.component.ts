@@ -28,7 +28,7 @@ export class MascotaUpdateComponent implements OnInit {
       raza: ['', Validators.required],
       sexo: ['', Validators.required],
       estado: ['', Validators.required],
-      imagen: ['', Validators.required]
+      imagenUrl: ['', Validators.required]
     });
 
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -45,7 +45,7 @@ export class MascotaUpdateComponent implements OnInit {
           raza: mascota.raza,
           sexo: mascota.sexo,
           estado: mascota.estado,
-          imagen: mascota.imagen
+          imagenUrl: mascota.imagenUrl
         });
       },
       error: (err) => {
