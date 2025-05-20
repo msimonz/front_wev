@@ -9,9 +9,18 @@
       <ul class="items-navegacion">
         <li><a class="items" [routerLink]="['/']">Inicio</a></li>
         <li><a class="items" [routerLink]="['/sobre-nosotros']">Sobre Nosotros</a></li>
-        <li><a class="items" [routerLink]="['/veterinario/login']">Veterinarios</a></li>
-        <li><a class="items" [routerLink]="['/admin/login']">Administradores</a></li>
+        
+        <!-- Mostrar enlaces de login solo si no está logueado -->
+        <ng-container *ngIf="!isLoggedIn">
+          <li><a class="items" [routerLink]="['/veterinario/login']">Veterinarios</a></li>
+          <li><a class="items" [routerLink]="['/admin/login']">Administradores</a></li>
+          <li><a [routerLink]="['/cliente/login']" class="contacto-btn">Login</a></li>
+        </ng-container>
+
+        <!-- Mostrar botón de cerrar sesión solo si está logueado -->
+        <li *ngIf="isLoggedIn">
+          <a class="items" (click)="logout()" style="cursor: pointer;">Cerrar Sesión</a>
+        </li>
       </ul>
-      <a [routerLink]="['/cliente/login']" class="contacto-btn">Login</a>
     </nav>
 </header>

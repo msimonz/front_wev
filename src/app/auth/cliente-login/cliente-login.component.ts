@@ -24,20 +24,23 @@ export class ClienteLoginComponent {
     this.errorMessage = '';
 
     this.authService.login(this.username, this.password, 'CLIENTE').subscribe({
-      next: () => {
+      next: (token) => {
         this.authService.getUserDetails('CLIENTE').subscribe({
           next: (user) => {
             if (user && user.id) {
+              console.log('Login cliente exitoso, redirigiendo a detalles con ID:', user.id);
               this.router.navigate(['/cliente/detallesCliente', user.id]);
             } else {
               this.loginError = true;
-              this.errorMessage = 'No se pudo obtener el ID del cliente.';
+              this.errorMessage = 'No se pudo obtener el ID del cliente después del login.';
+              this.authService.logout();
             }
           },
           error: (error) => {
             this.loginError = true;
-            this.errorMessage = 'Error al obtener los detalles del cliente.';
+            this.errorMessage = 'Error al obtener los detalles del cliente después del login.';
             console.error('Error al obtener detalles:', error);
+            this.authService.logout();
           }
         });
       },

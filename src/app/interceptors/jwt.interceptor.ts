@@ -31,8 +31,9 @@ export class JwtInterceptor implements HttpInterceptor {
     
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 403) {
-          // Si el error es 403 (Forbidden), redirigir al login
+        if (error.status === 401) {
+          // Solo redirigir al login si el token no es válido o ha expirado
+          this.authService.logout();
           this.router.navigate(['/auth/login']);
         }
         return throwError(() => error);
