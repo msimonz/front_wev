@@ -15,10 +15,15 @@
           <li><a [routerLink]="['/login']" class="contacto-btn">Login</a></li>
         </ng-container>
 
-        <!-- Mostrar botón de cerrar sesión solo si está logueado -->
-        <li *ngIf="isLoggedIn">
-          <a class="items" (click)="logout()" style="cursor: pointer;">Cerrar Sesión</a>
-        </li>
+        <!-- Mostrar icono de usuario y botón de cerrar sesión si está logueado -->
+        <ng-container *ngIf="isLoggedIn">
+          <li class="user-menu">
+            <a class="user-icon" (click)="navigateToUserDetails()">
+              <i class="fas fa-user"></i>
+            </a>
+            <a class="items" (click)="logout()" style="cursor: pointer;">Cerrar Sesión</a>
+          </li>
+        </ng-container>
       </ul>
     </nav>
 </header>
