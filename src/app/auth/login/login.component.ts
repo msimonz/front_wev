@@ -25,40 +25,52 @@ export class LoginComponent {
 
     this.authService.login(this.username, this.password, this.userType).subscribe({
       next: (token) => {
-        this.authService.getUserDetails(this.userType).subscribe({
-          next: (user) => {
-            if (user && user.id) {
-              console.log(`Login ${this.userType.toLowerCase()} exitoso, redirigiendo...`);
-              
-              // Redirigir según el tipo de usuario
-              switch(this.userType) {
-                case 'CLIENTE':
-                  this.router.navigate(['/cliente/detallesCliente', user.id]);
-                  break;
-                case 'VETERINARIO':
-                  this.router.navigate(['/veterinario/detallesVeterinario', user.id]);
-                  break;
-                case 'ADMIN':
-                  this.router.navigate(['/admin/dashboard']);
-                  break;
-                default:
-                  this.loginError = true;
-                  this.errorMessage = 'Tipo de usuario no válido';
-                  this.authService.logout();
+        if (token) {
+          // Para administrador, redirigir directamente al dashboard
+          if (this.userType === 'ADMIN') {
+            console.log('Login administrador exitoso, redirigiendo al dashboard...');
+            this.authService.setCurrentUser({ tipo: 'ADMIN' });
+            this.router.navigate(['/admin/dashboard']);
+            return;
+          }
+
+          // Para otros tipos de usuario, obtener detalles
+          this.authService.getUserDetails(this.userType).subscribe({
+            next: (user) => {
+              if (user && user.id) {
+                console.log(`Login ${this.userType.toLowerCase()} exitoso, redirigiendo...`);
+                
+                // Redirigir según el tipo de usuario
+                switch(this.userType) {
+                  case 'CLIENTE':
+                    this.router.navigate(['/cliente/detallesCliente', user.id]);
+                    break;
+                  case 'VETERINARIO':
+                    this.router.navigate(['/veterinario/detallesVeterinario', user.id]);
+                    break;
+                  default:
+                    this.loginError = true;
+                    this.errorMessage = 'Tipo de usuario no válido';
+                    this.authService.logout();
+                }
+              } else {
+                this.loginError = true;
+                this.errorMessage = 'No se pudo obtener los detalles del usuario después del login.';
+                this.authService.logout();
               }
-            } else {
+            },
+            error: (error) => {
               this.loginError = true;
-              this.errorMessage = 'No se pudo obtener los detalles del usuario después del login.';
+              this.errorMessage = 'Error al obtener los detalles del usuario después del login.';
+              console.error('Error al obtener detalles:', error);
               this.authService.logout();
             }
-          },
-          error: (error) => {
-            this.loginError = true;
-            this.errorMessage = 'Error al obtener los detalles del usuario después del login.';
-            console.error('Error al obtener detalles:', error);
-            this.authService.logout();
-          }
-        });
+          });
+        } else {
+          this.loginError = true;
+          this.errorMessage = 'No se recibió token de autenticación';
+          this.authService.logout();
+        }
       },
       error: (error) => {
         this.loginError = true;

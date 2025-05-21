@@ -29,6 +29,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  public setCurrentUser(user: any): void {
+    this.currentUserSubject.next(user);
+  }
+
   login(usuario: string, contrasena: string, tipo: UserType): Observable<any> {
     let url = '';
     if (tipo === 'ADMIN') url = `http://localhost:8080/admin/login`;
@@ -40,9 +44,6 @@ export class AuthService {
         tap(token => {
           if (token) {
             localStorage.setItem(this.TOKEN_KEY, token);
-            // Una vez que tenemos el token, obtenemos los detalles completos del usuario
-            // No actualizamos currentUserSubject aquí, lo haremos después de getUserDetails
-            // this.currentUserSubject.next({ token }); // <-- Eliminamos esta línea
           }
         })
       );
