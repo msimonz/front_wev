@@ -11,14 +11,12 @@ import { ClienteTableComponent } from './clientes/cliente-table/cliente-table.co
 import { ClienteDetallesComponent } from './clientes/cliente-detalles/cliente-detalles.component';
 import { ClienteUpdateComponent } from './clientes/cliente-update/cliente-update.component';
 import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
-import { ClienteLoginComponent } from './auth/cliente-login/cliente-login.component';
-import { VeterinarioLoginComponent } from './auth/veterinario-login/veterinario-login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { VeterinarioDetallesComponent } from './veterinarios/veterinario-detalles/veterinario-detalles.component';
 import { VeterinarioSuministrarComponent } from './veterinarios/veterinario-suministrar/veterinario-suministrar.component';
 import { VeterinarioTableComponent } from './veterinarios/veterinario-table/veterinario-table.component';
 import { VeterinarioFormsComponent } from './veterinarios/veterinario-forms/veterinario-forms.component';
 import { VeterinarioUpdateComponent } from './veterinarios/veterinario-update/veterinario-update.component';
-import { AdminLoginComponent } from './auth/admin-login/admin-login.component';  // Asegúrate de tener el componente correctamente importado
 import { AdminDashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -26,7 +24,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'servicios', component: ServiciosComponent },
-  { path: 'auth/login', component: ClienteLoginComponent },
+  
+  // Ruta unificada de login
+  { path: 'login', component: LoginComponent },
+  
   // Rutas de mascotas
   { path: 'mascota/tablaMascotas', component: MascotaTableComponent },
   { path: 'mascota/detallesMascota/:id', component: MascotaDetallesComponent },
@@ -46,12 +47,8 @@ const routes: Routes = [
   { path: 'veterinario/nuevo', component: VeterinarioFormsComponent },
   { path: 'veterinario/actualizarVeterinario/:id', component: VeterinarioUpdateComponent },
 
-  //Rutas de login
-  { path: 'cliente/login', component: ClienteLoginComponent },
-  { path: 'veterinario/login', component: VeterinarioLoginComponent },
-  { path: 'admin/login', component: AdminLoginComponent },
-  { path: 'admin/dashboard', component: AdminDashboardComponent }, 
-  { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
+  // Ruta del dashboard de administrador
+  { path: 'admin/dashboard', component: AdminDashboardComponent }
 ];
 
 @NgModule({

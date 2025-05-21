@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService, UserType } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,11 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @Input() userType: UserType = 'CLIENTE';
-  @Input() redirectUrl: string = '/';
-
   username: string = '';
   password: string = '';
+  userType: UserType = 'CLIENTE';
   loginError: boolean = false;
   errorMessage: string = '';
 
@@ -26,9 +24,41 @@ export class LoginComponent {
     this.errorMessage = '';
 
     this.authService.login(this.username, this.password, this.userType).subscribe({
-      next: (res) => {
-        // Solo tenemos el token, podrías hacer una petición adicional para obtener los datos del usuario
-        this.router.navigate([this.redirectUrl]);
+      next: (token) => {
+        this.authService.getUserDetails(this.userType).subscribe({
+          next: (user) => {
+            if (user && user.id) {
+              console.log(`Login ${this.userType.toLowerCase()} exitoso, redirigiendo...`);
+              
+              // Redirigir según el tipo de usuario
+              switch(this.userType) {
+                case 'CLIENTE':
+                  this.router.navigate(['/cliente/detallesCliente', user.id]);
+                  break;
+                case 'VETERINARIO':
+                  this.router.navigate(['/veterinario/detallesVeterinario', user.id]);
+                  break;
+                case 'ADMIN':
+                  this.router.navigate(['/admin/dashboard']);
+                  break;
+                default:
+                  this.loginError = true;
+                  this.errorMessage = 'Tipo de usuario no válido';
+                  this.authService.logout();
+              }
+            } else {
+              this.loginError = true;
+              this.errorMessage = 'No se pudo obtener los detalles del usuario después del login.';
+              this.authService.logout();
+            }
+          },
+          error: (error) => {
+            this.loginError = true;
+            this.errorMessage = 'Error al obtener los detalles del usuario después del login.';
+            console.error('Error al obtener detalles:', error);
+            this.authService.logout();
+          }
+        });
       },
       error: (error) => {
         this.loginError = true;
